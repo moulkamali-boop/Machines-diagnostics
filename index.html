@@ -7,9 +7,6 @@
     <title>🔧 PhysicSens – تشخيص الآلات والمعدات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ============================================================
-           STYLES – الحفاظ على التصميم السابق مع إضافات بسيطة للتحسينات الجديدة
-           ============================================================ */
         *{margin:0;padding:0;box-sizing:border-box}
         body{background:#0a0f1a;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;padding:0.8rem}
         .container{max-width:720px;margin:auto;background:#0e1422;border-radius:2rem;border:1px solid #f5a623;overflow:hidden;box-shadow:0 10px 30px -8px #000}
@@ -185,7 +182,7 @@
     </div>
 
     <footer>
-        <div style="word-break:break-all;font-size:0.65rem;">https://physic-sens.netlify.app</div>
+        <div style="word-break:break-all;font-size:0.65rem;">https://machines-diag.pages.dev</div>
     </footer>
 </div>
 <div id="toast" class="toast"></div>
@@ -434,7 +431,6 @@ var translations = {
         solution_oil_good:"استمر بالصيانة الدورية",
         fault_unknown:"عطل غير معروف",
         solution_unknown:"راجع فني متخصص",
-        // مستويات التدرج الجديدة
         level_observation:"ملاحظة",
         level_recommendation:"توصية",
         level_retry:"إعادة تشخيص",
@@ -923,7 +919,6 @@ async function applyTranslations() {
         }
         updateAdvisorText();
     }
-    // Update history panel if visible
     if (document.getElementById('historyPanel').style.display !== 'none') {
         renderHistory();
     }
@@ -954,8 +949,16 @@ function consumeCredit() {
     else if (paid > 0) { paid--; localStorage.setItem('physicPaid', paid); updateCreditsUI(); showToast(t('diag_ok')); return true; }
     else { showToast(t('no_credits')); return false; }
 }
+
+// ============================================================
+// 6. GUMROAD LINKS – الروابط الصحيحة النهائية
+// ============================================================
 function buyPlan(p) {
-    var urls = {1:'https://mouloudkamali.gumroad.com/l/physic1',5:'https://mouloudkamali.gumroad.com/l/physic5',15:'https://mouloudkamali.gumroad.com/l/physic15'};
+    var urls = {
+        1: 'https://mouloudkamali.gumroad.com/l/ctuncj',
+        5: 'https://mouloudkamali.gumroad.com/l/ksedbc',
+        15: 'https://mouloudkamali.gumroad.com/l/fmozaw'
+    };
     window.open(urls[p], '_blank');
     setTimeout(function(){
         if (confirm(t('payment_confirm') || 'هل أكملت الدفع؟')) {
@@ -968,7 +971,7 @@ function buyPlan(p) {
 }
 
 // ============================================================
-// 6. UI HELPERS
+// 7. UI HELPERS
 // ============================================================
 function updateDateTime() {
     var d = new Date();
@@ -1032,7 +1035,7 @@ function buildLangSelect() {
 }
 
 // ============================================================
-// 7. APP DEFINITIONS
+// 8. APP DEFINITIONS
 // ============================================================
 var APP_LIST = [
     { id: 'engine', labelKey: 'engine', icon: 'fa-cogs' },
@@ -1072,7 +1075,7 @@ function getSubDevices(appId) {
 }
 
 // ============================================================
-// 8. SENSOR MAPS (avec temps de mesure augmenté)
+// 9. SENSOR MAPS
 // ============================================================
 var SENSOR_MAP = {
     engine: [
@@ -1093,9 +1096,8 @@ var SENSOR_MAP = {
 };
 
 // ============================================================
-// 9. FINGERPRINTS – 53 بصمة (15+10+15 + 13 nouvelles)
+// 10. FINGERPRINTS – 53 empreintes
 // ============================================================
-// 9.1 ENGINE FINGERPRINTS (15 + 5 = 20)
 var ENGINE_FINGERPRINTS = [
     { id:'healthy', nameKey:'fault_healthy', solutionKey:'solution_healthy', severity:'low', freq:[85,170,255,340], pattern:'regular', smoke:'none', vib:'low' },
     { id:'knocking', nameKey:'fault_knocking', solutionKey:'solution_knocking', severity:'high', freq:[60,120,180,240], pattern:'irregular', smoke:'black', vib:'high' },
@@ -1112,7 +1114,6 @@ var ENGINE_FINGERPRINTS = [
     { id:'belt_loose', nameKey:'fault_belt_loose', solutionKey:'solution_belt_loose', severity:'medium', freq:[500,750,1000,1250], pattern:'regular', smoke:'none', vib:'low' },
     { id:'valve_tick', nameKey:'fault_valve_tick', solutionKey:'solution_valve_tick', severity:'medium', freq:[220,330,440,550], pattern:'regular', smoke:'none', vib:'medium' },
     { id:'pump_whine', nameKey:'fault_pump_whine', solutionKey:'solution_pump_whine', severity:'medium', freq:[300,450,600,750], pattern:'regular', smoke:'none', vib:'medium' },
-    // Nouvelles 5 pour le moteur
     { id:'crankshaft_sensor', nameKey:'fault_crankshaft', solutionKey:'solution_crankshaft', severity:'high', freq:[150,300,450,600], pattern:'irregular', smoke:'none', vib:'medium' },
     { id:'camshaft_sensor', nameKey:'fault_camshaft', solutionKey:'solution_camshaft', severity:'high', freq:[200,400,600,800], pattern:'irregular', smoke:'none', vib:'medium' },
     { id:'timing_chain', nameKey:'fault_timing', solutionKey:'solution_timing', severity:'high', freq:[100,200,300,400], pattern:'irregular', smoke:'none', vib:'high' },
@@ -1120,7 +1121,6 @@ var ENGINE_FINGERPRINTS = [
     { id:'radiator_blocked', nameKey:'fault_radiator', solutionKey:'solution_radiator', severity:'medium', freq:[50,100,150,200], pattern:'continuous', smoke:'white', vib:'medium' }
 ];
 
-// 9.2 HOME FINGERPRINTS (15 + 5 = 20)
 var HOME_FINGERPRINTS = [
     { id:'home_healthy', nameKey:'fault_home_healthy', solutionKey:'solution_home_healthy', severity:'low', sound:'smooth', vib:'low', temp:'normal' },
     { id:'home_motor', nameKey:'fault_home_motor', solutionKey:'solution_home_motor', severity:'high', sound:'rough', vib:'high', temp:'high' },
@@ -1137,7 +1137,6 @@ var HOME_FINGERPRINTS = [
     { id:'home_board', nameKey:'fault_home_board', solutionKey:'solution_home_board', severity:'medium', sound:'irregular', vib:'medium', temp:'normal' },
     { id:'home_pump', nameKey:'fault_pump_whine', solutionKey:'solution_pump_whine', severity:'medium', sound:'whine', vib:'medium', temp:'high' },
     { id:'home_valve', nameKey:'fault_valve_tick', solutionKey:'solution_valve_tick', severity:'medium', sound:'ticking', vib:'medium', temp:'moderate' },
-    // Nouvelles 5 pour la maison
     { id:'home_water_pump', nameKey:'fault_water_pump', solutionKey:'solution_water_pump', severity:'high', sound:'whine', vib:'medium', temp:'very_high' },
     { id:'home_thermostat_stuck', nameKey:'fault_thermostat', solutionKey:'solution_thermostat', severity:'medium', sound:'smooth', vib:'low', temp:'very_high' },
     { id:'home_head_gasket', nameKey:'fault_head_gasket', solutionKey:'solution_head_gasket', severity:'critical', sound:'hiss', vib:'medium', temp:'very_high' },
@@ -1145,7 +1144,6 @@ var HOME_FINGERPRINTS = [
     { id:'home_rod', nameKey:'fault_rod', solutionKey:'solution_rod', severity:'high', sound:'thud', vib:'very_high', temp:'high' }
 ];
 
-// 9.3 OIL FINGERPRINTS (10 + 3 = 13)
 var OIL_FINGERPRINTS = [
     { id:'oil_new', nameKey:'fault_oil_new', solutionKey:'solution_oil_new', severity:'low', color:'golden', magnetic:'low', viscosity:'high' },
     { id:'oil_used', nameKey:'fault_oil_used', solutionKey:'solution_oil_used', severity:'medium', color:'brown', magnetic:'medium', viscosity:'medium' },
@@ -1157,14 +1155,13 @@ var OIL_FINGERPRINTS = [
     { id:'oil_water', nameKey:'fault_oil_water', solutionKey:'solution_oil_water', severity:'critical', color:'milky', magnetic:'low', viscosity:'very_low' },
     { id:'oil_soot', nameKey:'fault_oil_soot', solutionKey:'solution_oil_soot', severity:'medium', color:'black', magnetic:'medium', viscosity:'medium' },
     { id:'oil_good', nameKey:'fault_oil_good', solutionKey:'solution_oil_good', severity:'low', color:'golden', magnetic:'low', viscosity:'high' },
-    // Nouvelles 3 pour les huiles
     { id:'oil_viscosity_loss', nameKey:'fault_oil_used', solutionKey:'solution_oil_used', severity:'medium', color:'brown', magnetic:'medium', viscosity:'very_low' },
     { id:'oil_acidic', nameKey:'fault_oil_oxidized', solutionKey:'solution_oil_oxidized', severity:'medium', color:'dark_brown', magnetic:'high', viscosity:'medium' },
     { id:'oil_fuel_mix', nameKey:'fault_oil_diluted', solutionKey:'solution_oil_diluted', severity:'high', color:'milky', magnetic:'medium', viscosity:'very_low' }
 ];
 
 // ============================================================
-// 10. BUILDERS
+// 11. BUILDERS
 // ============================================================
 function buildAppSelect() {
     var sel = document.getElementById('appSelect');
@@ -1328,7 +1325,7 @@ function stopAllCameras() {
 }
 
 // ============================================================
-// 11. MEASURE SENSOR – avec durée augmentée
+// 12. MEASURE SENSOR
 // ============================================================
 function measureSensor(sensorId) {
     if (measuring[sensorId]) return;
@@ -1370,7 +1367,6 @@ function startMeasurement(sensorId) {
     if (retake) retake.disabled = true;
     if (card) card.className = 'sensor-card active';
     
-    // Durée de mesure (augmentée)
     var duration = sensor.duration || 8;
     
     if (sensor.type === 'camera' && preview) {
@@ -1403,7 +1399,6 @@ function startMeasurement(sensorId) {
                 delete cameraStreams[sensorId];
             }
             
-            // Génération de lecture réaliste
             var reading = { value: Math.random() };
             if (sensorId === 'sound') {
                 var freqs = [60, 120, 180, 240, 400, 600, 800, 1000];
@@ -1492,7 +1487,7 @@ function updateAdvisorText() {
 }
 
 // ============================================================
-// 12. FIND BEST FAULT – avec système de niveaux
+// 13. FIND BEST FAULT
 // ============================================================
 function findBestFault(sensorData, appType) {
     var fingerprints = [];
@@ -1550,7 +1545,7 @@ function findBestFault(sensorData, appType) {
 }
 
 // ============================================================
-// 13. DIAGNOSIS – avec système de niveaux (tiered results)
+// 14. DIAGNOSIS
 // ============================================================
 document.getElementById('analyzeBtn').onclick = function() {
     if (!consumeCredit()) return;
@@ -1565,7 +1560,6 @@ document.getElementById('analyzeBtn').onclick = function() {
         return;
     }
     
-    // Calcul de la confiance
     var totalWeight = 0;
     var achievedWeight = 0;
     sensors.forEach(function(s) {
@@ -1581,7 +1575,6 @@ document.getElementById('analyzeBtn').onclick = function() {
     else if (confidence >= 20) confidenceLabel = t('confidence_low');
     else confidenceLabel = t('confidence_very_low');
     
-    // Construction des données de correspondance
     var matchData = {};
     sensors.forEach(function(s) {
         if (sensorResults[s.id] && sensorData[s.id]) {
@@ -1596,7 +1589,6 @@ document.getElementById('analyzeBtn').onclick = function() {
         }
     });
     
-    // Sélection du meilleur défaut
     var fault = findBestFault(matchData, currentApp);
     if (!fault) { fault = { id:'unknown', nameKey:'fault_unknown', solutionKey:'solution_unknown', severity:'medium' }; }
     
@@ -1605,11 +1597,7 @@ document.getElementById('analyzeBtn').onclick = function() {
     var sev = t('severity_' + (fault.severity || 'medium'));
     var sevClass = fault.severity || 'medium';
     
-    // ===== SYSTÈME DE NIVEAUX (tiered results) =====
-    // Niveau 1: Observation
-    // Niveau 2: Recommandation
-    // Niveau 3: Re-diagnostique
-    // Niveau 4: Solution finale
+    // ===== TIERED RESULTS =====
     var levels = [
         { key: 'level_observation', descKey: 'level_observation_desc', icon: '🔍' },
         { key: 'level_recommendation', descKey: 'level_recommendation_desc', icon: '💡' },
@@ -1628,7 +1616,6 @@ document.getElementById('analyzeBtn').onclick = function() {
             '</div>';
     });
     
-    // Liste des capteurs actifs/inactifs
     var activeSensors = sensors.filter(function(s){ return sensorResults[s.id]; }).map(function(s){ return t(s.labelKey); });
     var inactiveSensors = sensors.filter(function(s){ return !sensorResults[s.id]; }).map(function(s){ return t(s.labelKey); });
     var tip = '';
@@ -1636,7 +1623,6 @@ document.getElementById('analyzeBtn').onclick = function() {
         tip = t('tip_improve', {0: inactiveSensors.join('، ')});
     }
     
-    // Détails des lectures
     var readingDetails = '';
     if (matchData.freq) readingDetails += '🎵 ' + Math.round(matchData.freq) + 'Hz | ';
     if (matchData.vib) readingDetails += '📳 ' + matchData.vib + ' | ';
@@ -1647,7 +1633,6 @@ document.getElementById('analyzeBtn').onclick = function() {
     if (matchData.viscosity) readingDetails += '💧 ' + matchData.viscosity;
     if (readingDetails.endsWith(' | ')) readingDetails = readingDetails.slice(0, -3);
     
-    // Affichage final
     var html =
         '<div style="border-right:6px solid ' + (sevClass === 'critical' ? '#7f1d1d' : sevClass === 'high' ? '#ef4444' : sevClass === 'medium' ? '#f59e0b' : '#10b981') + ';padding:8px;">' +
         '<div style="font-size:1.2rem;font-weight:bold;color:#f5a623;">' + t('diag_title') + '</div>' +
@@ -1674,7 +1659,6 @@ document.getElementById('analyzeBtn').onclick = function() {
         html += '<div class="tip-box"><i class="fas fa-lightbulb"></i> ' + tip + '</div>';
     }
     
-    // Bouton Re-diagnostiquer (gratuit)
     html +=
         '<div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;">' +
         '<button id="retryDiagnosisBtn" class="btn-primary" style="background:#10b981;flex:1;margin:0;">🔄 ' + t('retry_free') + '</button>' +
@@ -1691,14 +1675,10 @@ document.getElementById('analyzeBtn').onclick = function() {
     diagnosisResult = { name: name, sol: sol, confidence: confidence, fault: fault };
     document.getElementById('advisorText').innerText = '✅ ' + name + '. ' + t('advisor_retry');
     
-    // Sauvegarde dans l'historique
     saveToHistory(name, sol, confidence, fault.id);
-    
-    // Réinitialisation du statut de retry
     retryAvailable = true;
     lastDiagnosisTime = Date.now();
     
-    // Bouton de réessai gratuit
     document.getElementById('retryDiagnosisBtn').onclick = function() {
         if (retryAvailable) {
             showToast('🔄 إعادة التشخيص مجاناً (دون خصم رصيد)');
@@ -1709,7 +1689,6 @@ document.getElementById('analyzeBtn').onclick = function() {
         }
     };
     
-    // Bouton d'export PDF
     document.getElementById('exportPdfBtn').onclick = function() {
         var content = '🔧 PhysicSens\n' + t('diag_title') + ': ' + name + '\n' + t('solution') + ': ' + sol + '\n' + t('confidence') + ': ' + confidence + '%\n' + t('severity') + ': ' + sev + '\n' + t('date') + ': ' + new Date().toLocaleString();
         var blob = new Blob([content], { type: 'text/plain' });
@@ -1721,7 +1700,7 @@ document.getElementById('analyzeBtn').onclick = function() {
 };
 
 // ============================================================
-// 14. HISTORY
+// 15. HISTORY
 // ============================================================
 function saveToHistory(name, solution, confidence, faultId) {
     var entry = {
@@ -1761,10 +1740,9 @@ function renderHistory() {
 }
 
 // ============================================================
-// 15. RESET
+// 16. RESET
 // ============================================================
 function resetAllSensors() {
-    // Arrêt de tous les capteurs
     if (sensorState && sensorState.sound && sensorState.sound.recorder && sensorState.sound.recorder.state === 'recording') {
         sensorState.sound.recorder.stop();
     }
@@ -1774,11 +1752,9 @@ function resetAllSensors() {
     if (sensorState && sensorState.camera && sensorState.camera.stream) {
         sensorState.camera.stream.getTracks().forEach(function(t){ t.stop(); });
     }
-    // Réinitialisation des états
     for (var key in sensorResults) { sensorResults[key] = false; }
     for (var key in measuring) { measuring[key] = false; }
     for (var key in sensorData) { sensorData[key] = null; }
-    // Mise à jour de l'interface
     document.querySelectorAll('.sensor-card').forEach(function(card) {
         card.classList.remove('active', 'done', 'result-green', 'result-orange', 'result-red');
     });
@@ -1798,7 +1774,7 @@ function resetAllSensors() {
 }
 
 // ============================================================
-// 16. ACTIONS (Listen, Copy, Share)
+// 17. ACTIONS
 // ============================================================
 function speakResult() {
     if (!diagnosisResult) return;
@@ -1826,12 +1802,12 @@ function shareResult() {
 }
 
 // ============================================================
-// 17. BACK
+// 18. BACK
 // ============================================================
 document.getElementById('backBtn').onclick = closeLab;
 
 // ============================================================
-// 18. ADMIN (5 clicks)
+// 19. ADMIN (5 clicks)
 // ============================================================
 var adminClicks = 0;
 var adminTimer = null;
@@ -1848,7 +1824,7 @@ document.getElementById('secretAdminIcon').onclick = function() {
 };
 
 // ============================================================
-// 19. SHARE BUTTONS
+// 20. SHARE BUTTONS
 // ============================================================
 document.getElementById('shareWhatsApp').onclick = function() {
     window.open('https://wa.me/?text=' + encodeURIComponent(window.location.href), '_blank');
@@ -1866,14 +1842,14 @@ document.getElementById('shareGeneral').onclick = function() {
 };
 
 // ============================================================
-// 20. PAYMENT BUTTONS
+// 21. PAYMENT BUTTONS – avec les bons liens Gumroad
 // ============================================================
 document.getElementById('singlePayBtn').onclick = function(){ buyPlan(1); };
 document.getElementById('pack5PayBtn').onclick = function(){ buyPlan(5); };
 document.getElementById('pack15PayBtn').onclick = function(){ buyPlan(15); };
 
 // ============================================================
-// 21. ACTIVATE LICENSE
+// 22. ACTIVATE LICENSE
 // ============================================================
 document.getElementById('activateLicenseBtn').onclick = function(){
     var code = document.getElementById('licenseCode').value.trim();
@@ -1893,7 +1869,7 @@ document.getElementById('activateLicenseBtn').onclick = function(){
 };
 
 // ============================================================
-// 22. INIT
+// 23. INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', async function() {
     document.dir = (rtlLangs.indexOf(currentLang) !== -1) ? 'rtl' : 'ltr';
@@ -1901,7 +1877,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     await applyTranslations();
     getLocation();
     updateCreditsUI();
-    console.log('🔧 PhysicSens – Version finale');
+    console.log('🔧 PhysicSens – Version finale avec liens Gumroad');
     console.log('📱 3 applications: Moteur, Huiles, Équipement domestique');
     console.log('📊 53 empreintes diagnostiques (20+13+20)');
     console.log('🔬 9 capteurs physiques');
@@ -1912,6 +1888,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     console.log('✅ Système de niveaux (observation → recommandation → re-diagnostic → solution)');
     console.log('✅ Re-diagnostic gratuit disponible');
     console.log('🔒 Sécurité: cryptage, session admin limitée');
+    console.log('🔗 Liens Gumroad: ctuncj, ksedbc, fmozaw');
 });
 </script>
 </body>
