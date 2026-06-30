@@ -7,7 +7,6 @@
     <title>🔧 PhysicSens – تشخيص الآلات والمعدات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ===== STYLES (نفس التصميم السابق مع تحسينات بسيطة) ===== */
         *{margin:0;padding:0;box-sizing:border-box}
         body{background:#0a0f1a;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;padding:0.8rem}
         .container{max-width:720px;margin:auto;background:#0e1422;border-radius:2rem;border:1px solid #f5a623;overflow:hidden;box-shadow:0 10px 30px -8px #000}
@@ -99,7 +98,6 @@
         .history-box .entry:last-child{border-bottom:none}
         .history-box .date{color:#94a3b8;font-size:0.65rem}
         .history-box .result{color:#f5a623;font-weight:bold}
-        /* === أنماط جديدة لعملية القراءات الثلاث === */
         .reading-indicator{display:flex;gap:8px;justify-content:center;margin:4px 0}
         .reading-dot{width:12px;height:12px;border-radius:50%;background:#2a3a5a;transition:0.3s}
         .reading-dot.active{background:#f5a623;box-shadow:0 0 8px #f5a623}
@@ -257,10 +255,11 @@ var allLangs = [
 var BCP_MAP = {ar:"ar-SA",en:"en-US",fr:"fr-FR",es:"es-ES",de:"de-DE",it:"it-IT",pt:"pt-BR",ru:"ru-RU",zh:"zh-CN",ja:"ja-JP",ko:"ko-KR",hi:"hi-IN",tr:"tr-TR",fa:"fa-IR",ur:"ur-PK",sw:"sw-KE",vi:"vi-VN"};
 
 // ============================================================
-// 2. TRANSLATIONS – FULL (ar, en, fr) avec tous les mots pour la traduction
+// 2. TRANSLATIONS – FULL (ar, en, fr) avec TOUS les mots
 // ============================================================
 var translations = {
     ar:{
+        // ===== واجهة المستخدم =====
         subtitle:"تشخيص الآلات والمعدات",
         free_badge:"🔓 {0} تشخيصات مجانية متبقية",
         credit_label:"الرصيد المتبقي:",
@@ -310,11 +309,13 @@ var translations = {
         confidence_acceptable:"مقبول",
         confidence_low:"ضعيف",
         confidence_very_low:"ضعيف جداً",
+        // ===== أسماء الحساسات =====
         sensor_sound:"صوت",
         sensor_vibration:"اهتزاز",
         sensor_camera:"كاميرا",
         sensor_temperature:"حرارة",
         sensor_magnetic:"مغناطيسية",
+        // ===== التطبيقات والأجهزة الفرعية =====
         engine:"محرك",
         oil:"زيوت",
         home:"معدات البيت",
@@ -347,6 +348,7 @@ var translations = {
         status_done:"مكتمل",
         finalize_btn:"الخلاصة النهائية",
         reset_btn:"بداية جديدة",
+        // ===== التشخيص =====
         diag_title:"التشخيص النهائي",
         solution:"الحل",
         severity:"الخطورة",
@@ -360,6 +362,7 @@ var translations = {
         share_general:"مشاركة",
         location_denied:"غير مصرح",
         location_loading:"جاري...",
+        // ===== أعطال المحرك (35) =====
         fault_healthy:"محرك سليم",
         solution_healthy:"صيانة دورية فقط",
         fault_knocking:"طقطقة – وقود/إشعال",
@@ -390,7 +393,6 @@ var translations = {
         solution_valve_tick:"اضبط خلوص الصمامات",
         fault_pump_whine:"أزيز مضخة وقود/زيت",
         solution_pump_whine:"افحص مضخة الوقود أو الزيت",
-        // البصمات الجديدة للمحرك
         fault_crankshaft:"مشكلة في عمود المرفق",
         solution_crankshaft:"افحص حساس عمود المرفق",
         fault_camshaft:"مشكلة في عمود الكامات",
@@ -401,17 +403,39 @@ var translations = {
         solution_vacuum:"افحص خراطيم التفريغ",
         fault_radiator:"انسداد في الردياتير",
         solution_radiator:"اغسل أو استبدل الردياتير",
-        // البصمات الجديدة للمنزل
-        fault_water_pump:"عطل في مضخة الماء",
-        solution_water_pump:"استبدل مضخة الماء",
-        fault_thermostat:"عطل في الثرموستات",
-        solution_thermostat:"استبدل الثرموستات",
+        fault_spark_plug:"عطل في البوجيهات",
+        solution_spark_plug:"استبدل البوجيهات",
+        fault_ignition_coil:"عطل في كويل الإشعال",
+        solution_ignition_coil:"استبدل كويل الإشعال التالف",
+        fault_fuel_pump:"ضعف في مضخة الوقود",
+        solution_fuel_pump:"افحص مضخة الوقود والفلتر",
+        fault_injector:"انسداد في البخاخات",
+        solution_injector:"نظف البخاخات أو استبدلها",
+        fault_o2sensor:"عطل في حساس الأكسجين",
+        solution_o2sensor:"استبدل حساس الأكسجين",
+        fault_catalyst:"انسداد في الكاتم الحفاز",
+        solution_catalyst:"نظف أو استبدل الكاتم الحفاز",
+        fault_exhaust_leak:"تسريب في العادم",
+        solution_exhaust_leak:"افحص وصلات العادم واستبدل التالف",
+        fault_turbo:"عطل في شاحن توربو",
+        solution_turbo:"افحص واستبدل التوربو",
+        fault_vvt:"عطل في نظام التوقيت المتغير",
+        solution_vvt:"افحص صمام VVT وزيت المحرك",
+        fault_alternator:"مشكلة في الدينمو",
+        solution_alternator:"افحص حساس الشحن والبطارية",
+        fault_crank_sensor:"عطل في حساس عمود الكرنك",
+        solution_crank_sensor:"استبدل حساس الكرنك",
+        fault_cam_sensor:"عطل في حساس عمود الكامات",
+        solution_cam_sensor:"استبدل حساس الكامات",
         fault_head_gasket:"تلف في حشية الرأس",
         solution_head_gasket:"استبدل حشية الرأس",
-        fault_piston:"تآكل حلقات المكبس",
-        solution_piston:"عمرة محرك",
-        fault_rod:"مشكلة في قضيب التوصيل",
-        solution_rod:"فحص قضيب التوصيل",
+        fault_piston_rings:"تآكل حلقات المكبس",
+        solution_piston_rings:"عمرة محرك (تغيير الحلقات)",
+        fault_connecting_rod:"مشكلة في قضيب التوصيل",
+        solution_connecting_rod:"فحص قضيب التوصيل",
+        fault_oil_pump:"عطل في مضخة الزيت",
+        solution_oil_pump:"استبدل مضخة الزيت",
+        // ===== أعطال المنزل (20) =====
         fault_home_healthy:"الجهاز سليم",
         solution_home_healthy:"صيانة دورية فقط",
         fault_home_motor:"عطل في المحرك الكهربائي",
@@ -438,7 +462,17 @@ var translations = {
         solution_home_heating:"استبدل عنصر التسخين",
         fault_home_board:"لوحة التحكم تالفة",
         solution_home_board:"استبدل لوحة التحكم",
-        // البصمات الجديدة للزيت
+        fault_water_pump:"عطل في مضخة الماء",
+        solution_water_pump:"استبدل مضخة الماء",
+        fault_thermostat:"عطل في الثرموستات",
+        solution_thermostat:"استبدل الثرموستات",
+        fault_head_gasket:"تلف في حشية الرأس",
+        solution_head_gasket:"استبدل حشية الرأس",
+        fault_piston:"تآكل حلقات المكبس",
+        solution_piston:"عمرة محرك",
+        fault_rod:"مشكلة في قضيب التوصيل",
+        solution_rod:"فحص قضيب التوصيل",
+        // ===== أعطال الزيوت (13) =====
         fault_oil_new:"زيت جديد",
         solution_oil_new:"حالة ممتازة، استمر بالصيانة الدورية",
         fault_oil_used:"زيت مستعمل",
@@ -461,6 +495,7 @@ var translations = {
         solution_oil_good:"استمر بالصيانة الدورية",
         fault_unknown:"عطل غير معروف",
         solution_unknown:"راجع فني متخصص",
+        // ===== مستويات التشخيص =====
         level_observation:"ملاحظة",
         level_recommendation:"توصية",
         level_retry:"إعادة تشخيص",
@@ -476,6 +511,7 @@ var translations = {
         export_text:"📝 تصدير نصي"
     },
     en:{
+        // ===== User Interface =====
         subtitle:"Diagnostics of Machines & Equipment",
         free_badge:"🔓 {0} free diagnoses left",
         credit_label:"Remaining credits:",
@@ -525,11 +561,13 @@ var translations = {
         confidence_acceptable:"Acceptable",
         confidence_low:"Low",
         confidence_very_low:"Very Low",
+        // ===== Sensor names =====
         sensor_sound:"Sound",
         sensor_vibration:"Vibration",
         sensor_camera:"Camera",
         sensor_temperature:"Temperature",
         sensor_magnetic:"Magnetic",
+        // ===== Apps & Sub-devices =====
         engine:"Engine",
         oil:"Oils",
         home:"Home Appliances",
@@ -562,6 +600,7 @@ var translations = {
         status_done:"Done",
         finalize_btn:"Final Diagnosis",
         reset_btn:"New Start",
+        // ===== Diagnosis =====
         diag_title:"Final Diagnosis",
         solution:"Solution",
         severity:"Severity",
@@ -575,6 +614,7 @@ var translations = {
         share_general:"Share",
         location_denied:"Denied",
         location_loading:"Loading...",
+        // ===== Engine Faults (35) =====
         fault_healthy:"Healthy Engine",
         solution_healthy:"Routine maintenance only",
         fault_knocking:"Knocking – Fuel/Ignition",
@@ -615,16 +655,39 @@ var translations = {
         solution_vacuum:"Check vacuum hoses",
         fault_radiator:"Radiator clogged",
         solution_radiator:"Flush or replace radiator",
-        fault_water_pump:"Water pump failure",
-        solution_water_pump:"Replace water pump",
-        fault_thermostat:"Thermostat stuck",
-        solution_thermostat:"Replace thermostat",
+        fault_spark_plug:"Spark plug failure",
+        solution_spark_plug:"Replace spark plugs",
+        fault_ignition_coil:"Ignition coil failure",
+        solution_ignition_coil:"Replace faulty ignition coil",
+        fault_fuel_pump:"Weak fuel pump",
+        solution_fuel_pump:"Check fuel pump and filter",
+        fault_injector:"Clogged injector",
+        solution_injector:"Clean or replace injectors",
+        fault_o2sensor:"O2 sensor failure",
+        solution_o2sensor:"Replace oxygen sensor",
+        fault_catalyst:"Clogged catalytic converter",
+        solution_catalyst:"Clean or replace catalytic converter",
+        fault_exhaust_leak:"Exhaust leak",
+        solution_exhaust_leak:"Check exhaust joints and replace damaged",
+        fault_turbo:"Turbocharger issue",
+        solution_turbo:"Inspect and replace turbo",
+        fault_vvt:"VVT system issue",
+        solution_vvt:"Check VVT solenoid and oil",
+        fault_alternator:"Alternator issue",
+        solution_alternator:"Check charging system",
+        fault_crank_sensor:"Crankshaft sensor failure",
+        solution_crank_sensor:"Replace crankshaft sensor",
+        fault_cam_sensor:"Camshaft sensor failure",
+        solution_cam_sensor:"Replace camshaft sensor",
         fault_head_gasket:"Blown head gasket",
         solution_head_gasket:"Replace head gasket",
-        fault_piston:"Worn piston rings",
-        solution_piston:"Engine overhaul",
-        fault_rod:"Connecting rod issue",
-        solution_rod:"Check connecting rod",
+        fault_piston_rings:"Worn piston rings",
+        solution_piston_rings:"Engine overhaul (replace rings)",
+        fault_connecting_rod:"Connecting rod issue",
+        solution_connecting_rod:"Check connecting rod",
+        fault_oil_pump:"Oil pump failure",
+        solution_oil_pump:"Replace oil pump",
+        // ===== Home Faults (20) =====
         fault_home_healthy:"Appliance is healthy",
         solution_home_healthy:"Routine maintenance only",
         fault_home_motor:"Motor failure",
@@ -651,6 +714,17 @@ var translations = {
         solution_home_heating:"Replace heating element",
         fault_home_board:"Control board failure",
         solution_home_board:"Replace control board",
+        fault_water_pump:"Water pump failure",
+        solution_water_pump:"Replace water pump",
+        fault_thermostat:"Thermostat stuck",
+        solution_thermostat:"Replace thermostat",
+        fault_head_gasket:"Blown head gasket",
+        solution_head_gasket:"Replace head gasket",
+        fault_piston:"Worn piston rings",
+        solution_piston:"Engine overhaul",
+        fault_rod:"Connecting rod issue",
+        solution_rod:"Check connecting rod",
+        // ===== Oil Faults (13) =====
         fault_oil_new:"New oil",
         solution_oil_new:"Excellent condition, continue routine maintenance",
         fault_oil_used:"Used oil",
@@ -673,6 +747,7 @@ var translations = {
         solution_oil_good:"Continue routine maintenance",
         fault_unknown:"Unknown fault",
         solution_unknown:"Consult a specialist",
+        // ===== Diagnosis Levels =====
         level_observation:"Observation",
         level_recommendation:"Recommendation",
         level_retry:"Re-diagnose",
@@ -688,6 +763,7 @@ var translations = {
         export_text:"📝 Export Text"
     },
     fr:{
+        // ===== Interface utilisateur =====
         subtitle:"Diagnostic des machines et équipements",
         free_badge:"🔓 {0} diagnostics gratuits restants",
         credit_label:"Crédits restants:",
@@ -737,11 +813,13 @@ var translations = {
         confidence_acceptable:"Acceptable",
         confidence_low:"Faible",
         confidence_very_low:"Très faible",
+        // ===== Noms des capteurs =====
         sensor_sound:"Son",
         sensor_vibration:"Vibration",
         sensor_camera:"Caméra",
         sensor_temperature:"Température",
         sensor_magnetic:"Magnétique",
+        // ===== Applications et sous-appareils =====
         engine:"Moteur",
         oil:"Huiles",
         home:"Appareils ménagers",
@@ -774,6 +852,7 @@ var translations = {
         status_done:"Terminé",
         finalize_btn:"Diagnostic final",
         reset_btn:"Nouveau départ",
+        // ===== Diagnostic =====
         diag_title:"Diagnostic final",
         solution:"Solution",
         severity:"Gravité",
@@ -787,6 +866,7 @@ var translations = {
         share_general:"Partager",
         location_denied:"Refusé",
         location_loading:"Chargement...",
+        // ===== Pannes moteur (35) =====
         fault_healthy:"Moteur sain",
         solution_healthy:"Entretien régulier",
         fault_knocking:"Cliquetis – Carburant/Allumage",
@@ -827,16 +907,39 @@ var translations = {
         solution_vacuum:"Vérifier les durites",
         fault_radiator:"Radiateur obstrué",
         solution_radiator:"Nettoyer ou remplacer",
-        fault_water_pump:"Pompe à eau défectueuse",
-        solution_water_pump:"Remplacer la pompe",
-        fault_thermostat:"Thermostat bloqué",
-        solution_thermostat:"Remplacer le thermostat",
+        fault_spark_plug:"Défaut de bougie",
+        solution_spark_plug:"Remplacer les bougies",
+        fault_ignition_coil:"Bobine d'allumage défectueuse",
+        solution_ignition_coil:"Remplacer la bobine",
+        fault_fuel_pump:"Pompe à carburant faible",
+        solution_fuel_pump:"Vérifier pompe et filtre",
+        fault_injector:"Injecteur obstrué",
+        solution_injector:"Nettoyer ou remplacer",
+        fault_o2sensor:"Capteur O2 défectueux",
+        solution_o2sensor:"Remplacer le capteur",
+        fault_catalyst:"Catalyseur obstrué",
+        solution_catalyst:"Nettoyer ou remplacer",
+        fault_exhaust_leak:"Fuite d'échappement",
+        solution_exhaust_leak:"Vérifier les joints d'échappement",
+        fault_turbo:"Problème de turbo",
+        solution_turbo:"Inspecter et remplacer le turbo",
+        fault_vvt:"Problème de distribution variable",
+        solution_vvt:"Vérifier solénoïde VVT",
+        fault_alternator:"Problème d'alternateur",
+        solution_alternator:"Vérifier système de charge",
+        fault_crank_sensor:"Capteur vilebrequin défectueux",
+        solution_crank_sensor:"Remplacer le capteur",
+        fault_cam_sensor:"Capteur arbre à cames défectueux",
+        solution_cam_sensor:"Remplacer le capteur",
         fault_head_gasket:"Joint de culasse endommagé",
         solution_head_gasket:"Remplacer le joint",
-        fault_piston:"Segments usés",
-        solution_piston:"Révision moteur",
-        fault_rod:"Problème de bielle",
-        solution_rod:"Vérifier la bielle",
+        fault_piston_rings:"Segments usés",
+        solution_piston_rings:"Révision moteur",
+        fault_connecting_rod:"Problème de bielle",
+        solution_connecting_rod:"Vérifier la bielle",
+        fault_oil_pump:"Pompe à huile défectueuse",
+        solution_oil_pump:"Remplacer la pompe",
+        // ===== Pannes maison (20) =====
         fault_home_healthy:"Appareil sain",
         solution_home_healthy:"Entretien régulier",
         fault_home_motor:"Moteur électrique défectueux",
@@ -863,6 +966,17 @@ var translations = {
         solution_home_heating:"Remplacer la résistance",
         fault_home_board:"Carte de contrôle défectueuse",
         solution_home_board:"Remplacer la carte",
+        fault_water_pump:"Pompe à eau défectueuse",
+        solution_water_pump:"Remplacer la pompe",
+        fault_thermostat:"Thermostat bloqué",
+        solution_thermostat:"Remplacer le thermostat",
+        fault_head_gasket:"Joint de culasse endommagé",
+        solution_head_gasket:"Remplacer le joint",
+        fault_piston:"Segments usés",
+        solution_piston:"Révision moteur",
+        fault_rod:"Problème de bielle",
+        solution_rod:"Vérifier la bielle",
+        // ===== Pannes huiles (13) =====
         fault_oil_new:"Huile neuve",
         solution_oil_new:"Excellent état, continuez l'entretien",
         fault_oil_used:"Huile usagée",
@@ -885,6 +999,7 @@ var translations = {
         solution_oil_good:"Continuez l'entretien régulier",
         fault_unknown:"Panne inconnue",
         solution_unknown:"Consultez un spécialiste",
+        // ===== Niveaux de diagnostic =====
         level_observation:"Observation",
         level_recommendation:"Recommandation",
         level_retry:"Re-diagnostiquer",
@@ -930,7 +1045,7 @@ var lastDiagnosisTime = 0;
 var retryAvailable = false;
 
 // ============================================================
-// 4. TRANSLATION FUNCTIONS (avec support API pour toutes les langues)
+// 4. TRANSLATION FUNCTIONS
 // ============================================================
 function t(key, vars) {
     var str = (translations[currentLang] && translations[currentLang][key]) ||
@@ -1021,7 +1136,7 @@ function consumeCredit() {
 }
 
 // ============================================================
-// 6. GUMROAD LINKS – الصحيحة النهائية
+// 6. GUMROAD LINKS
 // ============================================================
 function buyPlan(p) {
     var urls = {
@@ -1145,7 +1260,7 @@ function getSubDevices(appId) {
 }
 
 // ============================================================
-// 9. SENSOR MAPS (avec indicateur de 3 lectures)
+// 9. SENSOR MAPS
 // ============================================================
 var SENSOR_MAP = {
     engine: [
@@ -1166,10 +1281,11 @@ var SENSOR_MAP = {
 };
 
 // ============================================================
-// 10. FINGERPRINTS – 53 empreintes (avec les nouvelles)
+// 10. FINGERPRINTS – 68 (35 Engine + 20 Home + 13 Oil)
 // ============================================================
+// 10.1 ENGINE – 35 (15 de base + 5 ajoutées + 15 nouvelles)
 var ENGINE_FINGERPRINTS = [
-    // 15 originales
+    // === 15 de base ===
     { id:'healthy', nameKey:'fault_healthy', solutionKey:'solution_healthy', severity:'low', freq:[85,170,255,340], pattern:'regular', smoke:'none', vib:'low' },
     { id:'knocking', nameKey:'fault_knocking', solutionKey:'solution_knocking', severity:'high', freq:[60,120,180,240], pattern:'irregular', smoke:'black', vib:'high' },
     { id:'squeal', nameKey:'fault_squeal', solutionKey:'solution_squeal', severity:'medium', freq:[400,600,800,1000], pattern:'regular', smoke:'none', vib:'medium' },
@@ -1185,16 +1301,32 @@ var ENGINE_FINGERPRINTS = [
     { id:'belt_loose', nameKey:'fault_belt_loose', solutionKey:'solution_belt_loose', severity:'medium', freq:[500,750,1000,1250], pattern:'regular', smoke:'none', vib:'low' },
     { id:'valve_tick', nameKey:'fault_valve_tick', solutionKey:'solution_valve_tick', severity:'medium', freq:[220,330,440,550], pattern:'regular', smoke:'none', vib:'medium' },
     { id:'pump_whine', nameKey:'fault_pump_whine', solutionKey:'solution_pump_whine', severity:'medium', freq:[300,450,600,750], pattern:'regular', smoke:'none', vib:'medium' },
-    // 5 nouvelles pour le moteur
+    // === 5 ajoutées précédemment ===
     { id:'crankshaft_sensor', nameKey:'fault_crankshaft', solutionKey:'solution_crankshaft', severity:'high', freq:[150,300,450,600], pattern:'irregular', smoke:'none', vib:'medium' },
     { id:'camshaft_sensor', nameKey:'fault_camshaft', solutionKey:'solution_camshaft', severity:'high', freq:[200,400,600,800], pattern:'irregular', smoke:'none', vib:'medium' },
     { id:'timing_chain', nameKey:'fault_timing', solutionKey:'solution_timing', severity:'high', freq:[100,200,300,400], pattern:'irregular', smoke:'none', vib:'high' },
     { id:'vacuum_leak', nameKey:'fault_vacuum', solutionKey:'solution_vacuum', severity:'medium', freq:[300,600,900,1200], pattern:'continuous', smoke:'none', vib:'low' },
-    { id:'radiator_blocked', nameKey:'fault_radiator', solutionKey:'solution_radiator', severity:'medium', freq:[50,100,150,200], pattern:'continuous', smoke:'white', vib:'medium' }
+    { id:'radiator_blocked', nameKey:'fault_radiator', solutionKey:'solution_radiator', severity:'medium', freq:[50,100,150,200], pattern:'continuous', smoke:'white', vib:'medium' },
+    // === 15 nouvelles ===
+    { id:'spark_plug', nameKey:'fault_spark_plug', solutionKey:'solution_spark_plug', severity:'medium', freq:[130,260,390,520], pattern:'irregular', smoke:'none', vib:'medium' },
+    { id:'ignition_coil', nameKey:'fault_ignition_coil', solutionKey:'solution_ignition_coil', severity:'high', freq:[250,500,750,1000], pattern:'irregular', smoke:'none', vib:'medium' },
+    { id:'fuel_pump_weak', nameKey:'fault_fuel_pump', solutionKey:'solution_fuel_pump', severity:'medium', freq:[80,160,240,320], pattern:'continuous', smoke:'none', vib:'low' },
+    { id:'injector_clogged', nameKey:'fault_injector', solutionKey:'solution_injector', severity:'medium', freq:[180,360,540,720], pattern:'irregular', smoke:'black', vib:'medium' },
+    { id:'o2_sensor', nameKey:'fault_o2sensor', solutionKey:'solution_o2sensor', severity:'medium', freq:[100,200,300,400], pattern:'irregular', smoke:'black', vib:'low' },
+    { id:'catalyst_blocked', nameKey:'fault_catalyst', solutionKey:'solution_catalyst', severity:'high', freq:[120,240,360,480], pattern:'continuous', smoke:'gray', vib:'medium' },
+    { id:'exhaust_leak', nameKey:'fault_exhaust_leak', solutionKey:'solution_exhaust_leak', severity:'high', freq:[60,120,180,240], pattern:'hiss', smoke:'none', vib:'low' },
+    { id:'turbo_issue', nameKey:'fault_turbo', solutionKey:'solution_turbo', severity:'high', freq:[400,800,1200,1600], pattern:'whistle', smoke:'none', vib:'medium' },
+    { id:'vvt_issue', nameKey:'fault_vvt', solutionKey:'solution_vvt', severity:'medium', freq:[150,300,450,600], pattern:'ticking', smoke:'none', vib:'medium' },
+    { id:'alternator_issue', nameKey:'fault_alternator', solutionKey:'solution_alternator', severity:'medium', freq:[200,400,600,800], pattern:'buzzing', smoke:'none', vib:'medium' },
+    { id:'crank_sensor', nameKey:'fault_crank_sensor', solutionKey:'solution_crank_sensor', severity:'high', freq:[50,100,150,200], pattern:'irregular', smoke:'none', vib:'medium' },
+    { id:'cam_sensor', nameKey:'fault_cam_sensor', solutionKey:'solution_cam_sensor', severity:'high', freq:[75,150,225,300], pattern:'irregular', smoke:'none', vib:'medium' },
+    { id:'head_gasket', nameKey:'fault_head_gasket', solutionKey:'solution_head_gasket', severity:'critical', freq:[40,80,120,160], pattern:'continuous', smoke:'white_thick', vib:'medium' },
+    { id:'piston_rings', nameKey:'fault_piston_rings', solutionKey:'solution_piston_rings', severity:'high', freq:[90,180,270,360], pattern:'irregular', smoke:'blue', vib:'very_high' },
+    { id:'connecting_rod', nameKey:'fault_connecting_rod', solutionKey:'solution_connecting_rod', severity:'high', freq:[110,220,330,440], pattern:'regular', smoke:'none', vib:'very_high' }
 ];
 
+// 10.2 HOME – 20 (15 de base + 5 nouvelles)
 var HOME_FINGERPRINTS = [
-    // 15 originales
     { id:'home_healthy', nameKey:'fault_home_healthy', solutionKey:'solution_home_healthy', severity:'low', sound:'smooth', vib:'low', temp:'normal' },
     { id:'home_motor', nameKey:'fault_home_motor', solutionKey:'solution_home_motor', severity:'high', sound:'rough', vib:'high', temp:'high' },
     { id:'home_belt', nameKey:'fault_home_belt', solutionKey:'solution_home_belt', severity:'medium', sound:'squeal', vib:'medium', temp:'normal' },
@@ -1218,8 +1350,8 @@ var HOME_FINGERPRINTS = [
     { id:'home_rod', nameKey:'fault_rod', solutionKey:'solution_rod', severity:'high', sound:'thud', vib:'very_high', temp:'high' }
 ];
 
+// 10.3 OIL – 13 (10 de base + 3 nouvelles)
 var OIL_FINGERPRINTS = [
-    // 10 originales
     { id:'oil_new', nameKey:'fault_oil_new', solutionKey:'solution_oil_new', severity:'low', color:'golden', magnetic:'low', viscosity:'high' },
     { id:'oil_used', nameKey:'fault_oil_used', solutionKey:'solution_oil_used', severity:'medium', color:'brown', magnetic:'medium', viscosity:'medium' },
     { id:'oil_burnt', nameKey:'fault_oil_burnt', solutionKey:'solution_oil_burnt', severity:'high', color:'black', magnetic:'high', viscosity:'low' },
@@ -1237,7 +1369,10 @@ var OIL_FINGERPRINTS = [
 ];
 
 // ============================================================
-// 11. BUILDERS
+// 11. BUILDERS (suite du code)
+// ============================================================
+// ... (la suite du code est identique à la version précédente avec les corrections de traduction)
+// Pour des raisons de longueur, je continue avec les fonctions essentielles
 // ============================================================
 function buildAppSelect() {
     var sel = document.getElementById('appSelect');
@@ -1349,7 +1484,6 @@ function buildSensors(appId) {
         var previewHtml = (s.type === 'camera') ?
             '<div id="preview_' + s.id + '" style="width:100%;min-height:80px;display:flex;align-items:center;justify-content:center;background:#000;border-radius:8px;color:#94a3b8;font-size:0.75rem;">⏳ ' + t('waiting') + '</div>' :
             '<div class="sensor-preview" id="preview_' + s.id + '" style="background:#000;border-radius:8px;padding:6px;color:#94a3b8;font-size:0.75rem;">⏳ ' + t('waiting') + '</div>';
-        // Indicateur de lectures multiples
         var readingIndicator = '';
         if (s.readings && s.readings > 1) {
             readingIndicator = '<div class="reading-indicator" id="indicator_' + s.id + '">';
@@ -1375,7 +1509,6 @@ function buildSensors(appId) {
         sensorResults[s.id] = false;
         measuring[s.id] = false;
         sensorData[s.id] = null;
-        // Initialiser le compteur de lectures
         if (s.readings && s.readings > 1) {
             sensorData[s.id + '_readings'] = [];
             sensorData[s.id + '_readingCount'] = 0;
@@ -1425,12 +1558,10 @@ function measureSensor(sensorId) {
     var sensor = sensors.find(function(s){ return s.id === sensorId; });
     if (!sensor) return;
     
-    // Réinitialiser les lectures si c'est la première fois
     if (sensor.readings && sensor.readings > 1) {
         if (sensorData[sensorId + '_readingCount'] === undefined || sensorData[sensorId + '_readingCount'] === 0) {
             sensorData[sensorId + '_readings'] = [];
             sensorData[sensorId + '_readingCount'] = 0;
-            // Réinitialiser les indicateurs visuels
             for (var r = 0; r < sensor.readings; r++) {
                 var dot = document.getElementById('dot_' + sensorId + '_' + r);
                 if (dot) { dot.className = 'reading-dot'; }
@@ -1475,7 +1606,6 @@ function startMeasurement(sensorId) {
     var readings = sensor.readings || 1;
     var currentReading = sensorData[sensorId + '_readingCount'] || 0;
     
-    // Mettre à jour l'indicateur visuel
     if (readings > 1) {
         var dot = document.getElementById('dot_' + sensorId + '_' + currentReading);
         if (dot) dot.className = 'reading-dot active';
@@ -1511,20 +1641,15 @@ function startMeasurement(sensorId) {
                 delete cameraStreams[sensorId];
             }
             
-            // Générer une lecture
             var reading = generateReading(sensorId);
             
-            // Stocker la lecture
             if (readings > 1) {
                 sensorData[sensorId + '_readings'].push(reading);
                 sensorData[sensorId + '_readingCount'] = currentReading + 1;
-                // Marquer le point comme terminé
                 var dot = document.getElementById('dot_' + sensorId + '_' + currentReading);
                 if (dot) dot.className = 'reading-dot done';
                 
-                // Vérifier si on a toutes les lectures
                 if (sensorData[sensorId + '_readingCount'] >= readings) {
-                    // Traiter les lectures (choisir les 2 plus proches)
                     var bestReadings = selectBestReadings(sensorData[sensorId + '_readings']);
                     sensorData[sensorId] = bestReadings;
                     sensorResults[sensorId] = true;
@@ -1547,10 +1672,8 @@ function startMeasurement(sensorId) {
                     if (retake) retake.disabled = false;
                     updateAdvisorText();
                 } else {
-                    // Lancer la lecture suivante
                     if (preview) preview.innerHTML = '⏳ Lecture ' + (currentReading + 2) + '/' + readings + '...';
                     if (btn) btn.disabled = false;
-                    // Relancer automatiquement après un court délai
                     setTimeout(function() {
                         if (!sensorResults[sensorId]) {
                             startMeasurement(sensorId);
@@ -1558,7 +1681,6 @@ function startMeasurement(sensorId) {
                     }, 500);
                 }
             } else {
-                // Lecture unique
                 sensorData[sensorId] = reading;
                 sensorResults[sensorId] = true;
                 
@@ -1584,15 +1706,12 @@ function startMeasurement(sensorId) {
     }, 1000);
 }
 
-// ============================================================
-// 13. GÉNÉRATION DE LECTURE ET SÉLECTION DES MEILLEURES
-// ============================================================
 function generateReading(sensorId) {
     var reading = { value: Math.random() };
     if (sensorId === 'sound') {
-        var freqs = [60, 120, 180, 240, 400, 600, 800, 1000];
+        var freqs = [60, 120, 180, 240, 400, 600, 800, 1000, 130, 260, 390, 520, 250, 500, 750, 1000];
         reading.freq = freqs[Math.floor(Math.random() * freqs.length)] + Math.floor(Math.random() * 20);
-        var patterns = ['smooth', 'irregular', 'regular', 'continuous', 'sharp', 'choking'];
+        var patterns = ['smooth', 'irregular', 'regular', 'continuous', 'sharp', 'choking', 'hiss', 'whistle', 'buzzing', 'ticking'];
         reading.pattern = patterns[Math.floor(Math.random() * patterns.length)];
     } else if (sensorId === 'vibration') {
         var vibLevels = ['low', 'medium', 'high', 'very_high'];
@@ -1616,8 +1735,6 @@ function generateReading(sensorId) {
 
 function selectBestReadings(readings) {
     if (readings.length <= 2) return readings[0] || readings;
-    // Sélectionner les 2 lectures les plus proches
-    // Pour simplifier, on prend les 2 premières et on calcule la distance
     var bestPair = [readings[0], readings[1]];
     var bestDist = calculateDistance(readings[0], readings[1]);
     for (var i = 0; i < readings.length; i++) {
@@ -1629,12 +1746,10 @@ function selectBestReadings(readings) {
             }
         }
     }
-    // Retourner la moyenne des deux meilleures (ou la première si identiques)
     return averageReadings(bestPair);
 }
 
 function calculateDistance(a, b) {
-    // Distance simplifiée basée sur les propriétés communes
     var dist = 0;
     if (a.freq !== undefined && b.freq !== undefined) {
         dist += Math.abs(a.freq - b.freq) / 100;
@@ -1663,7 +1778,7 @@ function averageReadings(pair) {
         } else if (pair[0][key] === pair[1][key]) {
             result[key] = pair[0][key];
         } else {
-            result[key] = pair[0][key]; // fallback
+            result[key] = pair[0][key];
         }
     });
     return result;
@@ -1678,7 +1793,6 @@ function resetSensor(sensorId) {
     if (sensor && sensor.readings && sensor.readings > 1) {
         sensorData[sensorId + '_readings'] = [];
         sensorData[sensorId + '_readingCount'] = 0;
-        // Réinitialiser les indicateurs visuels
         for (var r = 0; r < sensor.readings; r++) {
             var dot = document.getElementById('dot_' + sensorId + '_' + r);
             if (dot) { dot.className = 'reading-dot'; }
@@ -1720,7 +1834,7 @@ function updateAdvisorText() {
 }
 
 // ============================================================
-// 14. FIND BEST FAULT – avec toutes les nouvelles empreintes
+// 13. FIND BEST FAULT – avec 35 empreintes moteur
 // ============================================================
 function findBestFault(sensorData, appType) {
     var fingerprints = [];
@@ -1736,7 +1850,6 @@ function findBestFault(sensorData, appType) {
         var fp = fingerprints[i];
         var score = 0;
         
-        // Match fréquence
         if (sensorData.freq !== undefined && sensorData.freq !== null && fp.freq) {
             var avgFreq = (fp.freq[0] + fp.freq[fp.freq.length-1]) / 2;
             var diff = Math.abs(sensorData.freq - avgFreq);
@@ -1744,7 +1857,6 @@ function findBestFault(sensorData, appType) {
             else if (diff < 50) score += 20;
             else if (diff < 100) score += 10;
         }
-        // Match vibration
         if (sensorData.vib && fp.vib) {
             var vibMap = { 'low': 1, 'medium': 2, 'high': 3, 'very_high': 4 };
             var sensorLevel = vibMap[sensorData.vib] || 0;
@@ -1754,32 +1866,25 @@ function findBestFault(sensorData, appType) {
             else if (vibDiff === 1) score += 15;
             else if (vibDiff === 2) score += 5;
         }
-        // Match fumée
         if (sensorData.smoke && fp.smoke) {
             if (sensorData.smoke === fp.smoke) score += 20;
             else if (fp.smoke === 'none' && sensorData.smoke !== 'none') score += 5;
         }
-        // Match température
         if (sensorData.temp && fp.temp) {
             if (sensorData.temp === fp.temp) score += 15;
         }
-        // Match couleur
         if (sensorData.color && fp.color) {
             if (sensorData.color === fp.color) score += 20;
         }
-        // Match magnétique
         if (sensorData.magnetic && fp.magnetic) {
             if (sensorData.magnetic === fp.magnetic) score += 15;
         }
-        // Match viscosité
         if (sensorData.viscosity && fp.viscosity) {
             if (sensorData.viscosity === fp.viscosity) score += 15;
         }
-        // Match pattern (pour moteur)
         if (sensorData.pattern && fp.pattern) {
             if (sensorData.pattern === fp.pattern) score += 10;
         }
-        // Match sound (pour maison)
         if (sensorData.sound && fp.sound) {
             if (sensorData.sound === fp.sound) score += 20;
         }
@@ -1793,7 +1898,7 @@ function findBestFault(sensorData, appType) {
 }
 
 // ============================================================
-// 15. DIAGNOSIS – avec traduction complète et sans mots arabes
+// 14. DIAGNOSIS – avec traduction complète
 // ============================================================
 document.getElementById('analyzeBtn').onclick = async function() {
     if (!consumeCredit()) return;
@@ -1808,7 +1913,6 @@ document.getElementById('analyzeBtn').onclick = async function() {
         return;
     }
     
-    // Calcul de la confiance
     var totalWeight = 0;
     var achievedWeight = 0;
     sensors.forEach(function(s) {
@@ -1817,14 +1921,12 @@ document.getElementById('analyzeBtn').onclick = async function() {
     });
     var confidence = Math.min(98, Math.round((achievedWeight / totalWeight) * 100));
     
-    var confidenceLabel = '';
-    if (confidence >= 80) confidenceLabel = await tt(t('confidence_excellent'), currentLang);
-    else if (confidence >= 60) confidenceLabel = await tt(t('confidence_good'), currentLang);
-    else if (confidence >= 40) confidenceLabel = await tt(t('confidence_acceptable'), currentLang);
-    else if (confidence >= 20) confidenceLabel = await tt(t('confidence_low'), currentLang);
-    else confidenceLabel = await tt(t('confidence_very_low'), currentLang);
+    var confidenceLabel = await tt(t('confidence_excellent'), currentLang);
+    if (confidence < 80) confidenceLabel = await tt(t('confidence_good'), currentLang);
+    if (confidence < 60) confidenceLabel = await tt(t('confidence_acceptable'), currentLang);
+    if (confidence < 40) confidenceLabel = await tt(t('confidence_low'), currentLang);
+    if (confidence < 20) confidenceLabel = await tt(t('confidence_very_low'), currentLang);
     
-    // Construction des données de correspondance
     var matchData = {};
     sensors.forEach(function(s) {
         if (sensorResults[s.id] && sensorData[s.id]) {
@@ -1840,17 +1942,14 @@ document.getElementById('analyzeBtn').onclick = async function() {
         }
     });
     
-    // Sélection du meilleur défaut (avec toutes les nouvelles empreintes)
     var fault = findBestFault(matchData, currentApp);
     if (!fault) { fault = { id:'unknown', nameKey:'fault_unknown', solutionKey:'solution_unknown', severity:'medium' }; }
     
-    // ==== TRADUCTION COMPLETE DES RÉSULTATS ====
     var name = await tt(t(fault.nameKey), currentLang);
     var sol = await tt(t(fault.solutionKey), currentLang);
     var sev = await tt(t('severity_' + (fault.severity || 'medium')), currentLang);
     var sevClass = fault.severity || 'medium';
     
-    // ===== SYSTÈME DE NIVEAUX (traduit) =====
     var levels = [
         { key: 'level_observation', descKey: 'level_observation_desc', icon: '🔍' },
         { key: 'level_recommendation', descKey: 'level_recommendation_desc', icon: '💡' },
@@ -1873,7 +1972,6 @@ document.getElementById('analyzeBtn').onclick = async function() {
             '</div>';
     }
     
-    // Liste des capteurs
     var activeSensors = sensors.filter(function(s){ return sensorResults[s.id]; }).map(function(s){ return t(s.labelKey); });
     var inactiveSensors = sensors.filter(function(s){ return !sensorResults[s.id]; }).map(function(s){ return t(s.labelKey); });
     var tip = '';
@@ -1881,7 +1979,6 @@ document.getElementById('analyzeBtn').onclick = async function() {
         tip = await tt(t('tip_improve', {0: inactiveSensors.join('، ')}), currentLang);
     }
     
-    // Détails des lectures
     var readingDetails = '';
     if (matchData.freq) readingDetails += '🎵 ' + Math.round(matchData.freq) + 'Hz | ';
     if (matchData.vib) readingDetails += '📳 ' + matchData.vib + ' | ';
@@ -1892,7 +1989,6 @@ document.getElementById('analyzeBtn').onclick = async function() {
     if (matchData.viscosity) readingDetails += '💧 ' + matchData.viscosity;
     if (readingDetails.endsWith(' | ')) readingDetails = readingDetails.slice(0, -3);
     
-    // Construction du HTML final (TOUT est traduit)
     var html =
         '<div style="border-right:6px solid ' + (sevClass === 'critical' ? '#7f1d1d' : sevClass === 'high' ? '#ef4444' : sevClass === 'medium' ? '#f59e0b' : '#10b981') + ';padding:8px;">' +
         '<div style="font-size:1.2rem;font-weight:bold;color:#f5a623;">' + await tt(t('diag_title'), currentLang) + '</div>' +
@@ -1960,7 +2056,7 @@ document.getElementById('analyzeBtn').onclick = async function() {
 };
 
 // ============================================================
-// 16. HISTORY
+// 15. HISTORY
 // ============================================================
 function saveToHistory(name, solution, confidence, faultId) {
     var entry = {
@@ -2000,7 +2096,7 @@ function renderHistory() {
 }
 
 // ============================================================
-// 17. RESET
+// 16. RESET ALL SENSORS
 // ============================================================
 function resetAllSensors() {
     if (sensorState && sensorState.sound && sensorState.sound.recorder && sensorState.sound.recorder.state === 'recording') {
@@ -2029,7 +2125,6 @@ function resetAllSensors() {
     document.querySelectorAll('#sensorsContainer .btn-group button:last-child').forEach(function(btn) {
         btn.disabled = true;
     });
-    // Réinitialiser les indicateurs de lectures
     document.querySelectorAll('.reading-dot').forEach(function(dot) {
         dot.className = 'reading-dot';
     });
@@ -2038,7 +2133,7 @@ function resetAllSensors() {
 }
 
 // ============================================================
-// 18. ACTIONS (Listen, Copy, Share)
+// 17. ACTIONS (Speak, Copy, Share)
 // ============================================================
 function speakResult() {
     if (!diagnosisResult) return;
@@ -2066,12 +2161,12 @@ function shareResult() {
 }
 
 // ============================================================
-// 19. BACK
+// 18. BACK
 // ============================================================
 document.getElementById('backBtn').onclick = closeLab;
 
 // ============================================================
-// 20. ADMIN (5 clicks)
+// 19. ADMIN (5 clicks)
 // ============================================================
 var adminClicks = 0;
 var adminTimer = null;
@@ -2088,7 +2183,7 @@ document.getElementById('secretAdminIcon').onclick = function() {
 };
 
 // ============================================================
-// 21. SHARE BUTTONS
+// 20. SHARE BUTTONS
 // ============================================================
 document.getElementById('shareWhatsApp').onclick = function() {
     window.open('https://wa.me/?text=' + encodeURIComponent(window.location.href), '_blank');
@@ -2106,14 +2201,14 @@ document.getElementById('shareGeneral').onclick = function() {
 };
 
 // ============================================================
-// 22. PAYMENT BUTTONS
+// 21. PAYMENT BUTTONS
 // ============================================================
 document.getElementById('singlePayBtn').onclick = function(){ buyPlan(1); };
 document.getElementById('pack5PayBtn').onclick = function(){ buyPlan(5); };
 document.getElementById('pack15PayBtn').onclick = function(){ buyPlan(15); };
 
 // ============================================================
-// 23. ACTIVATE LICENSE
+// 22. ACTIVATE LICENSE
 // ============================================================
 document.getElementById('activateLicenseBtn').onclick = function(){
     var code = document.getElementById('licenseCode').value.trim();
@@ -2133,7 +2228,7 @@ document.getElementById('activateLicenseBtn').onclick = function(){
 };
 
 // ============================================================
-// 24. INIT
+// 23. INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', async function() {
     document.dir = (rtlLangs.indexOf(currentLang) !== -1) ? 'rtl' : 'ltr';
@@ -2141,13 +2236,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     await applyTranslations();
     getLocation();
     updateCreditsUI();
-    console.log('🔧 PhysicSens – Version finale avec toutes les corrections');
-    console.log('📱 3 applications: Moteur, Huiles, Équipement domestique');
-    console.log('📊 53 empreintes diagnostiques (20+13+20)');
+    console.log('🔧 PhysicSens – Version finale avec 68 empreintes');
+    console.log('📱 3 applications: Moteur (35), Huiles (13), Maison (20)');
+    console.log('📊 Total: 68 empreintes diagnostiques');
     console.log('🔬 9 capteurs physiques');
     console.log('🌐 54 langues (3 manuelles + 51 automatiques)');
     console.log('✅ Lecture en 3 passes pour micro et vibration');
-    console.log('✅ Sélection des 2 lectures les plus proches');
     console.log('✅ Traduction complète des résultats');
     console.log('✅ Liens Gumroad: ctuncj, ksedbc, fmozaw');
 });
