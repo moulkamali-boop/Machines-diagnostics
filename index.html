@@ -103,6 +103,9 @@
         .reading-dot.active{background:#f5a623;box-shadow:0 0 8px #f5a623}
         .reading-dot.done{background:#10b981}
         .reading-dot.fail{background:#ef4444}
+        .footer-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;font-size:0.65rem;margin-top:4px}
+        .footer-links a{color:#f5a623;text-decoration:none}
+        .footer-links a:hover{text-decoration:underline}
     </style>
 </head>
 <body>
@@ -187,7 +190,11 @@
     </div>
 
     <footer>
-        <div style="word-break:break-all;font-size:0.65rem;">https://machines-diag.pages.dev</div>
+        <div style="word-break:break-all;font-size:0.65rem;">https://machines-diagnostics.mouloud-kamali123.workers.dev</div>
+        <div class="footer-links">
+            <span>🔗 <a href="https://github.com/moulkamali-boop/Machines-diagnostics" target="_blank">GitHub</a></span>
+            <span>⚡ <a href="https://machines-diagnostics.mouloud-kamali123.workers.dev" target="_blank">Cloudflare Workers</a></span>
+        </div>
     </footer>
 </div>
 <div id="toast" class="toast"></div>
@@ -255,11 +262,10 @@ var allLangs = [
 var BCP_MAP = {ar:"ar-SA",en:"en-US",fr:"fr-FR",es:"es-ES",de:"de-DE",it:"it-IT",pt:"pt-BR",ru:"ru-RU",zh:"zh-CN",ja:"ja-JP",ko:"ko-KR",hi:"hi-IN",tr:"tr-TR",fa:"fa-IR",ur:"ur-PK",sw:"sw-KE",vi:"vi-VN"};
 
 // ============================================================
-// 2. TRANSLATIONS – COMPLETE (ar, en, fr) avec TOUTES les clés
+// 2. TRANSLATIONS – COMPLETE (ar, en, fr)
 // ============================================================
 var translations = {
     ar:{
-        // ===== Interface =====
         subtitle:"تشخيص الآلات والمعدات",
         free_badge:"🔓 {0} تشخيصات مجانية متبقية",
         credit_label:"الرصيد المتبقي:",
@@ -309,23 +315,19 @@ var translations = {
         confidence_acceptable:"مقبول",
         confidence_low:"ضعيف",
         confidence_very_low:"ضعيف جداً",
-        // ===== Capteurs =====
         sensor_sound:"صوت",
         sensor_vibration:"اهتزاز",
         sensor_camera:"كاميرا",
         sensor_temperature:"حرارة",
         sensor_magnetic:"مغناطيسية",
-        // ===== Instructions capteurs =====
         instr_sound:"ضع الهاتف على بعد 20 سم من المحرك",
         instr_vibration:"ضع الهاتف على خرقة فوق المحرك",
         instr_camera:"صوّر عادم السيارة من المؤخرة",
         instr_temperature:"قس حرارة الجهاز",
         instr_magnetic:"قرّب الهاتف من الزيت",
-        // ===== Status =====
         status_idle:"غير نشط",
         status_recording:"جاري التسجيل...",
         status_done:"مكتمل",
-        // ===== Apps =====
         engine:"محرك",
         oil:"زيوت",
         home:"معدات البيت",
@@ -355,7 +357,6 @@ var translations = {
         retake_btn:"إعادة",
         finalize_btn:"الخلاصة النهائية",
         reset_btn:"بداية جديدة",
-        // ===== Diagnosis =====
         diag_title:"التشخيص النهائي",
         solution:"الحل",
         severity:"الخطورة",
@@ -369,7 +370,6 @@ var translations = {
         share_general:"مشاركة",
         location_denied:"غير مصرح",
         location_loading:"جاري...",
-        // ===== Engine Faults (35) =====
         fault_healthy:"محرك سليم",
         solution_healthy:"صيانة دورية فقط",
         fault_knocking:"طقطقة – وقود/إشعال",
@@ -442,7 +442,6 @@ var translations = {
         solution_connecting_rod:"فحص قضيب التوصيل",
         fault_oil_pump:"عطل في مضخة الزيت",
         solution_oil_pump:"استبدل مضخة الزيت",
-        // ===== Home Faults (20) =====
         fault_home_healthy:"الجهاز سليم",
         solution_home_healthy:"صيانة دورية فقط",
         fault_home_motor:"عطل في المحرك الكهربائي",
@@ -479,7 +478,6 @@ var translations = {
         solution_piston:"عمرة محرك",
         fault_rod:"مشكلة في قضيب التوصيل",
         solution_rod:"فحص قضيب التوصيل",
-        // ===== Oil Faults (13) =====
         fault_oil_new:"زيت جديد",
         solution_oil_new:"حالة ممتازة، استمر بالصيانة الدورية",
         fault_oil_used:"زيت مستعمل",
@@ -502,7 +500,6 @@ var translations = {
         solution_oil_good:"استمر بالصيانة الدورية",
         fault_unknown:"عطل غير معروف",
         solution_unknown:"راجع فني متخصص",
-        // ===== Diagnosis Levels =====
         level_observation:"ملاحظة",
         level_recommendation:"توصية",
         level_retry:"إعادة تشخيص",
@@ -1017,9 +1014,6 @@ var translations = {
     }
 };
 
-// ============================================================
-// 3. CORE SYSTEM (suite)
-// ============================================================
 // Compléter les 51 autres langues avec fallback EN
 for(var l of allLangs) {
     if(!translations[l.code]) {
@@ -1028,6 +1022,9 @@ for(var l of allLangs) {
     }
 }
 
+// ============================================================
+// 3. CORE SYSTEM
+// ============================================================
 var currentLang = localStorage.getItem('physicLang') || 'ar';
 var transCache = JSON.parse(localStorage.getItem('transCache') || '{}');
 var freeUsed = parseInt(localStorage.getItem('physicFree') || '0');
@@ -1045,6 +1042,9 @@ var rtlLangs = ['ar','fa','ur','he'];
 var lastDiagnosisTime = 0;
 var retryAvailable = false;
 
+// ============================================================
+// 4. TRANSLATION FUNCTIONS
+// ============================================================
 function t(key, vars) {
     var str = (translations[currentLang] && translations[currentLang][key]) ||
               (translations.en && translations.en[key]) ||
@@ -1108,7 +1108,7 @@ async function applyTranslations() {
 }
 
 // ============================================================
-// 4. CREDITS & GUMROAD
+// 5. CREDITS & GUMROAD
 // ============================================================
 function totalCredits() { return admin ? 9999 : Math.max(0, 3 - freeUsed) + paid; }
 function updateCreditsUI() {
@@ -1150,7 +1150,71 @@ function buyPlan(p) {
 }
 
 // ============================================================
-// 5. APP DEFINITIONS & SENSOR MAP
+// 6. UI HELPERS
+// ============================================================
+function updateDateTime() {
+    var d = new Date();
+    document.getElementById('currentDate').innerText =
+        d.getDate().toString().padStart(2,'0') + '/' +
+        (d.getMonth()+1).toString().padStart(2,'0') + '/' +
+        d.getFullYear();
+    document.getElementById('currentTime').innerText =
+        d.getHours().toString().padStart(2,'0') + ':' +
+        d.getMinutes().toString().padStart(2,'0') + ':' +
+        d.getSeconds().toString().padStart(2,'0');
+}
+setInterval(updateDateTime, 1000);
+updateDateTime();
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(p){ document.getElementById('currentLocation').innerHTML = p.coords.latitude.toFixed(4) + ', ' + p.coords.longitude.toFixed(4); },
+            function(){ document.getElementById('currentLocation').innerHTML = t('location_denied'); }
+        );
+    } else { document.getElementById('currentLocation').innerHTML = t('location_denied'); }
+}
+
+function getDeviceId() {
+    var id = localStorage.getItem('physicDeviceId');
+    if (!id) {
+        id = 'PS' + Math.random().toString(36).substr(2,8).toUpperCase();
+        localStorage.setItem('physicDeviceId', id);
+    }
+    document.getElementById('deviceId').innerHTML = 'ID: ' + id;
+}
+getDeviceId();
+
+function updateQR() {
+    document.getElementById('qrImage').src = 'https://quickchart.io/qr?text=' + encodeURIComponent(window.location.href) + '&size=120&margin=2';
+}
+updateQR(); setInterval(updateQR, 10000);
+document.getElementById('qrContainer').onclick = function(){ navigator.clipboard.writeText(window.location.href); showToast('✅ تم نسخ الرابط'); };
+
+function buildLangSelect() {
+    var sel = document.getElementById('langSelect');
+    sel.innerHTML = '';
+    for (var i = 0; i < allLangs.length; i++) {
+        var l = allLangs[i];
+        var opt = document.createElement('option');
+        opt.value = l.code;
+        opt.textContent = l.flag + ' ' + l.name;
+        if (l.code === currentLang) opt.selected = true;
+        sel.appendChild(opt);
+    }
+    sel.onchange = async function() {
+        currentLang = sel.value;
+        localStorage.setItem('physicLang', currentLang);
+        var li = allLangs.find(function(l){ return l.code === currentLang; });
+        document.dir = (li && li.dir === 'rtl') ? 'rtl' : 'ltr';
+        await applyTranslations();
+        getLocation();
+        updateAdvisorText();
+    };
+}
+
+// ============================================================
+// 7. APP DEFINITIONS & SENSOR MAP
 // ============================================================
 var APP_LIST = [
     { id: 'engine', labelKey: 'engine', icon: 'fa-cogs' },
@@ -1208,7 +1272,7 @@ var SENSOR_MAP = {
 };
 
 // ============================================================
-// 6. FINGERPRINTS (68)
+// 8. FINGERPRINTS (68)
 // ============================================================
 var ENGINE_FINGERPRINTS = [
     { id:'healthy', nameKey:'fault_healthy', solutionKey:'solution_healthy', severity:'low', freq:[85,170,255,340], pattern:'regular', smoke:'none', vib:'low' },
@@ -1288,7 +1352,7 @@ var OIL_FINGERPRINTS = [
 ];
 
 // ============================================================
-// 7. BUILDERS (avec traduction des instructions)
+// 9. BUILDERS
 // ============================================================
 function buildAppSelect() {
     var sel = document.getElementById('appSelect');
@@ -1466,7 +1530,7 @@ function stopAllCameras() {
 }
 
 // ============================================================
-// 8. MEASUREMENT FUNCTIONS (avec traduction des statuts)
+// 10. MEASUREMENT FUNCTIONS
 // ============================================================
 function measureSensor(sensorId) {
     if (measuring[sensorId]) return;
@@ -1754,7 +1818,7 @@ function updateAdvisorText() {
 }
 
 // ============================================================
-// 9. FIND BEST FAULT
+// 11. FIND BEST FAULT & DIAGNOSIS
 // ============================================================
 function findBestFault(sensorData, appType) {
     var fingerprints = [];
@@ -1817,9 +1881,6 @@ function findBestFault(sensorData, appType) {
     return bestMatch || fingerprints[0];
 }
 
-// ============================================================
-// 10. DIAGNOSIS FINAL (avec traduction complète)
-// ============================================================
 document.getElementById('analyzeBtn').onclick = async function() {
     if (!consumeCredit()) return;
     var sensors = SENSOR_MAP[currentApp] || [];
@@ -1976,7 +2037,7 @@ document.getElementById('analyzeBtn').onclick = async function() {
 };
 
 // ============================================================
-// 11. HISTORY, RESET, ACTIONS
+// 12. HISTORY, RESET, ACTIONS
 // ============================================================
 function saveToHistory(name, solution, confidence, faultId) {
     var entry = {
@@ -2077,7 +2138,7 @@ function shareResult() {
 document.getElementById('backBtn').onclick = closeLab;
 
 // ============================================================
-// 12. ADMIN
+// 13. ADMIN
 // ============================================================
 var adminClicks = 0;
 var adminTimer = null;
@@ -2094,7 +2155,7 @@ document.getElementById('secretAdminIcon').onclick = function() {
 };
 
 // ============================================================
-// 13. SHARE BUTTONS
+// 14. SHARE BUTTONS
 // ============================================================
 document.getElementById('shareWhatsApp').onclick = function() {
     window.open('https://wa.me/?text=' + encodeURIComponent(window.location.href), '_blank');
@@ -2112,14 +2173,14 @@ document.getElementById('shareGeneral').onclick = function() {
 };
 
 // ============================================================
-// 14. PAYMENT BUTTONS
+// 15. PAYMENT BUTTONS
 // ============================================================
 document.getElementById('singlePayBtn').onclick = function(){ buyPlan(1); };
 document.getElementById('pack5PayBtn').onclick = function(){ buyPlan(5); };
 document.getElementById('pack15PayBtn').onclick = function(){ buyPlan(15); };
 
 // ============================================================
-// 15. ACTIVATE LICENSE
+// 16. ACTIVATE LICENSE
 // ============================================================
 document.getElementById('activateLicenseBtn').onclick = function(){
     var code = document.getElementById('licenseCode').value.trim();
@@ -2139,7 +2200,7 @@ document.getElementById('activateLicenseBtn').onclick = function(){
 };
 
 // ============================================================
-// 16. INIT
+// 17. INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', async function() {
     document.dir = (rtlLangs.indexOf(currentLang) !== -1) ? 'rtl' : 'ltr';
