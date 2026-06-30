@@ -255,11 +255,11 @@ var allLangs = [
 var BCP_MAP = {ar:"ar-SA",en:"en-US",fr:"fr-FR",es:"es-ES",de:"de-DE",it:"it-IT",pt:"pt-BR",ru:"ru-RU",zh:"zh-CN",ja:"ja-JP",ko:"ko-KR",hi:"hi-IN",tr:"tr-TR",fa:"fa-IR",ur:"ur-PK",sw:"sw-KE",vi:"vi-VN"};
 
 // ============================================================
-// 2. TRANSLATIONS – FULL (ar, en, fr) avec TOUS les mots
+// 2. TRANSLATIONS – COMPLETE (ar, en, fr) avec TOUTES les clés
 // ============================================================
 var translations = {
     ar:{
-        // ===== واجهة المستخدم =====
+        // ===== Interface =====
         subtitle:"تشخيص الآلات والمعدات",
         free_badge:"🔓 {0} تشخيصات مجانية متبقية",
         credit_label:"الرصيد المتبقي:",
@@ -309,13 +309,23 @@ var translations = {
         confidence_acceptable:"مقبول",
         confidence_low:"ضعيف",
         confidence_very_low:"ضعيف جداً",
-        // ===== أسماء الحساسات =====
+        // ===== Capteurs =====
         sensor_sound:"صوت",
         sensor_vibration:"اهتزاز",
         sensor_camera:"كاميرا",
         sensor_temperature:"حرارة",
         sensor_magnetic:"مغناطيسية",
-        // ===== التطبيقات والأجهزة الفرعية =====
+        // ===== Instructions capteurs =====
+        instr_sound:"ضع الهاتف على بعد 20 سم من المحرك",
+        instr_vibration:"ضع الهاتف على خرقة فوق المحرك",
+        instr_camera:"صوّر عادم السيارة من المؤخرة",
+        instr_temperature:"قس حرارة الجهاز",
+        instr_magnetic:"قرّب الهاتف من الزيت",
+        // ===== Status =====
+        status_idle:"غير نشط",
+        status_recording:"جاري التسجيل...",
+        status_done:"مكتمل",
+        // ===== Apps =====
         engine:"محرك",
         oil:"زيوت",
         home:"معدات البيت",
@@ -343,12 +353,9 @@ var translations = {
         stop_btn:"إيقاف",
         confirm_btn:"تأكيد",
         retake_btn:"إعادة",
-        status_idle:"غير نشط",
-        status_recording:"جاري التسجيل...",
-        status_done:"مكتمل",
         finalize_btn:"الخلاصة النهائية",
         reset_btn:"بداية جديدة",
-        // ===== التشخيص =====
+        // ===== Diagnosis =====
         diag_title:"التشخيص النهائي",
         solution:"الحل",
         severity:"الخطورة",
@@ -362,7 +369,7 @@ var translations = {
         share_general:"مشاركة",
         location_denied:"غير مصرح",
         location_loading:"جاري...",
-        // ===== أعطال المحرك (35) =====
+        // ===== Engine Faults (35) =====
         fault_healthy:"محرك سليم",
         solution_healthy:"صيانة دورية فقط",
         fault_knocking:"طقطقة – وقود/إشعال",
@@ -435,7 +442,7 @@ var translations = {
         solution_connecting_rod:"فحص قضيب التوصيل",
         fault_oil_pump:"عطل في مضخة الزيت",
         solution_oil_pump:"استبدل مضخة الزيت",
-        // ===== أعطال المنزل (20) =====
+        // ===== Home Faults (20) =====
         fault_home_healthy:"الجهاز سليم",
         solution_home_healthy:"صيانة دورية فقط",
         fault_home_motor:"عطل في المحرك الكهربائي",
@@ -472,7 +479,7 @@ var translations = {
         solution_piston:"عمرة محرك",
         fault_rod:"مشكلة في قضيب التوصيل",
         solution_rod:"فحص قضيب التوصيل",
-        // ===== أعطال الزيوت (13) =====
+        // ===== Oil Faults (13) =====
         fault_oil_new:"زيت جديد",
         solution_oil_new:"حالة ممتازة، استمر بالصيانة الدورية",
         fault_oil_used:"زيت مستعمل",
@@ -495,7 +502,7 @@ var translations = {
         solution_oil_good:"استمر بالصيانة الدورية",
         fault_unknown:"عطل غير معروف",
         solution_unknown:"راجع فني متخصص",
-        // ===== مستويات التشخيص =====
+        // ===== Diagnosis Levels =====
         level_observation:"ملاحظة",
         level_recommendation:"توصية",
         level_retry:"إعادة تشخيص",
@@ -511,7 +518,6 @@ var translations = {
         export_text:"📝 تصدير نصي"
     },
     en:{
-        // ===== User Interface =====
         subtitle:"Diagnostics of Machines & Equipment",
         free_badge:"🔓 {0} free diagnoses left",
         credit_label:"Remaining credits:",
@@ -561,13 +567,19 @@ var translations = {
         confidence_acceptable:"Acceptable",
         confidence_low:"Low",
         confidence_very_low:"Very Low",
-        // ===== Sensor names =====
         sensor_sound:"Sound",
         sensor_vibration:"Vibration",
         sensor_camera:"Camera",
         sensor_temperature:"Temperature",
         sensor_magnetic:"Magnetic",
-        // ===== Apps & Sub-devices =====
+        instr_sound:"Place phone 20cm from engine",
+        instr_vibration:"Place phone on cloth over engine",
+        instr_camera:"Capture exhaust from behind car",
+        instr_temperature:"Measure device temperature",
+        instr_magnetic:"Bring phone near oil",
+        status_idle:"Inactive",
+        status_recording:"Recording...",
+        status_done:"Done",
         engine:"Engine",
         oil:"Oils",
         home:"Home Appliances",
@@ -595,12 +607,8 @@ var translations = {
         stop_btn:"Stop",
         confirm_btn:"Confirm",
         retake_btn:"Retake",
-        status_idle:"Inactive",
-        status_recording:"Recording...",
-        status_done:"Done",
         finalize_btn:"Final Diagnosis",
         reset_btn:"New Start",
-        // ===== Diagnosis =====
         diag_title:"Final Diagnosis",
         solution:"Solution",
         severity:"Severity",
@@ -614,7 +622,6 @@ var translations = {
         share_general:"Share",
         location_denied:"Denied",
         location_loading:"Loading...",
-        // ===== Engine Faults (35) =====
         fault_healthy:"Healthy Engine",
         solution_healthy:"Routine maintenance only",
         fault_knocking:"Knocking – Fuel/Ignition",
@@ -687,7 +694,6 @@ var translations = {
         solution_connecting_rod:"Check connecting rod",
         fault_oil_pump:"Oil pump failure",
         solution_oil_pump:"Replace oil pump",
-        // ===== Home Faults (20) =====
         fault_home_healthy:"Appliance is healthy",
         solution_home_healthy:"Routine maintenance only",
         fault_home_motor:"Motor failure",
@@ -724,7 +730,6 @@ var translations = {
         solution_piston:"Engine overhaul",
         fault_rod:"Connecting rod issue",
         solution_rod:"Check connecting rod",
-        // ===== Oil Faults (13) =====
         fault_oil_new:"New oil",
         solution_oil_new:"Excellent condition, continue routine maintenance",
         fault_oil_used:"Used oil",
@@ -747,7 +752,6 @@ var translations = {
         solution_oil_good:"Continue routine maintenance",
         fault_unknown:"Unknown fault",
         solution_unknown:"Consult a specialist",
-        // ===== Diagnosis Levels =====
         level_observation:"Observation",
         level_recommendation:"Recommendation",
         level_retry:"Re-diagnose",
@@ -763,7 +767,6 @@ var translations = {
         export_text:"📝 Export Text"
     },
     fr:{
-        // ===== Interface utilisateur =====
         subtitle:"Diagnostic des machines et équipements",
         free_badge:"🔓 {0} diagnostics gratuits restants",
         credit_label:"Crédits restants:",
@@ -813,13 +816,19 @@ var translations = {
         confidence_acceptable:"Acceptable",
         confidence_low:"Faible",
         confidence_very_low:"Très faible",
-        // ===== Noms des capteurs =====
         sensor_sound:"Son",
         sensor_vibration:"Vibration",
         sensor_camera:"Caméra",
         sensor_temperature:"Température",
         sensor_magnetic:"Magnétique",
-        // ===== Applications et sous-appareils =====
+        instr_sound:"Placez le téléphone à 20 cm du moteur",
+        instr_vibration:"Posez le téléphone sur un chiffon sur le moteur",
+        instr_camera:"Photographiez l'échappement à l'arrière",
+        instr_temperature:"Mesurez la température de l'appareil",
+        instr_magnetic:"Approchez le téléphone de l'huile",
+        status_idle:"Inactif",
+        status_recording:"Enregistrement...",
+        status_done:"Terminé",
         engine:"Moteur",
         oil:"Huiles",
         home:"Appareils ménagers",
@@ -847,12 +856,8 @@ var translations = {
         stop_btn:"Arrêter",
         confirm_btn:"Confirmer",
         retake_btn:"Recommencer",
-        status_idle:"Inactif",
-        status_recording:"Enregistrement...",
-        status_done:"Terminé",
         finalize_btn:"Diagnostic final",
         reset_btn:"Nouveau départ",
-        // ===== Diagnostic =====
         diag_title:"Diagnostic final",
         solution:"Solution",
         severity:"Gravité",
@@ -866,7 +871,6 @@ var translations = {
         share_general:"Partager",
         location_denied:"Refusé",
         location_loading:"Chargement...",
-        // ===== Pannes moteur (35) =====
         fault_healthy:"Moteur sain",
         solution_healthy:"Entretien régulier",
         fault_knocking:"Cliquetis – Carburant/Allumage",
@@ -939,7 +943,6 @@ var translations = {
         solution_connecting_rod:"Vérifier la bielle",
         fault_oil_pump:"Pompe à huile défectueuse",
         solution_oil_pump:"Remplacer la pompe",
-        // ===== Pannes maison (20) =====
         fault_home_healthy:"Appareil sain",
         solution_home_healthy:"Entretien régulier",
         fault_home_motor:"Moteur électrique défectueux",
@@ -976,7 +979,6 @@ var translations = {
         solution_piston:"Révision moteur",
         fault_rod:"Problème de bielle",
         solution_rod:"Vérifier la bielle",
-        // ===== Pannes huiles (13) =====
         fault_oil_new:"Huile neuve",
         solution_oil_new:"Excellent état, continuez l'entretien",
         fault_oil_used:"Huile usagée",
@@ -999,7 +1001,6 @@ var translations = {
         solution_oil_good:"Continuez l'entretien régulier",
         fault_unknown:"Panne inconnue",
         solution_unknown:"Consultez un spécialiste",
-        // ===== Niveaux de diagnostic =====
         level_observation:"Observation",
         level_recommendation:"Recommandation",
         level_retry:"Re-diagnostiquer",
@@ -1016,6 +1017,9 @@ var translations = {
     }
 };
 
+// ============================================================
+// 3. CORE SYSTEM (suite)
+// ============================================================
 // Compléter les 51 autres langues avec fallback EN
 for(var l of allLangs) {
     if(!translations[l.code]) {
@@ -1024,9 +1028,6 @@ for(var l of allLangs) {
     }
 }
 
-// ============================================================
-// 3. CORE SYSTEM
-// ============================================================
 var currentLang = localStorage.getItem('physicLang') || 'ar';
 var transCache = JSON.parse(localStorage.getItem('transCache') || '{}');
 var freeUsed = parseInt(localStorage.getItem('physicFree') || '0');
@@ -1044,9 +1045,6 @@ var rtlLangs = ['ar','fa','ur','he'];
 var lastDiagnosisTime = 0;
 var retryAvailable = false;
 
-// ============================================================
-// 4. TRANSLATION FUNCTIONS
-// ============================================================
 function t(key, vars) {
     var str = (translations[currentLang] && translations[currentLang][key]) ||
               (translations.en && translations.en[key]) ||
@@ -1110,7 +1108,7 @@ async function applyTranslations() {
 }
 
 // ============================================================
-// 5. CREDITS & SECURITY
+// 4. CREDITS & GUMROAD
 // ============================================================
 function totalCredits() { return admin ? 9999 : Math.max(0, 3 - freeUsed) + paid; }
 function updateCreditsUI() {
@@ -1134,10 +1132,6 @@ function consumeCredit() {
     else if (paid > 0) { paid--; localStorage.setItem('physicPaid', paid); updateCreditsUI(); showToast(t('diag_ok')); return true; }
     else { showToast(t('no_credits')); return false; }
 }
-
-// ============================================================
-// 6. GUMROAD LINKS
-// ============================================================
 function buyPlan(p) {
     var urls = {
         1: 'https://mouloudkamali.gumroad.com/l/ctuncj',
@@ -1156,71 +1150,7 @@ function buyPlan(p) {
 }
 
 // ============================================================
-// 7. UI HELPERS
-// ============================================================
-function updateDateTime() {
-    var d = new Date();
-    document.getElementById('currentDate').innerText =
-        d.getDate().toString().padStart(2,'0') + '/' +
-        (d.getMonth()+1).toString().padStart(2,'0') + '/' +
-        d.getFullYear();
-    document.getElementById('currentTime').innerText =
-        d.getHours().toString().padStart(2,'0') + ':' +
-        d.getMinutes().toString().padStart(2,'0') + ':' +
-        d.getSeconds().toString().padStart(2,'0');
-}
-setInterval(updateDateTime, 1000);
-updateDateTime();
-
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            function(p){ document.getElementById('currentLocation').innerHTML = p.coords.latitude.toFixed(4) + ', ' + p.coords.longitude.toFixed(4); },
-            function(){ document.getElementById('currentLocation').innerHTML = t('location_denied'); }
-        );
-    } else { document.getElementById('currentLocation').innerHTML = t('location_denied'); }
-}
-
-function getDeviceId() {
-    var id = localStorage.getItem('physicDeviceId');
-    if (!id) {
-        id = 'PS' + Math.random().toString(36).substr(2,8).toUpperCase();
-        localStorage.setItem('physicDeviceId', id);
-    }
-    document.getElementById('deviceId').innerHTML = 'ID: ' + id;
-}
-getDeviceId();
-
-function updateQR() {
-    document.getElementById('qrImage').src = 'https://quickchart.io/qr?text=' + encodeURIComponent(window.location.href) + '&size=120&margin=2';
-}
-updateQR(); setInterval(updateQR, 10000);
-document.getElementById('qrContainer').onclick = function(){ navigator.clipboard.writeText(window.location.href); showToast('✅ تم نسخ الرابط'); };
-
-function buildLangSelect() {
-    var sel = document.getElementById('langSelect');
-    sel.innerHTML = '';
-    for (var i = 0; i < allLangs.length; i++) {
-        var l = allLangs[i];
-        var opt = document.createElement('option');
-        opt.value = l.code;
-        opt.textContent = l.flag + ' ' + l.name;
-        if (l.code === currentLang) opt.selected = true;
-        sel.appendChild(opt);
-    }
-    sel.onchange = async function() {
-        currentLang = sel.value;
-        localStorage.setItem('physicLang', currentLang);
-        var li = allLangs.find(function(l){ return l.code === currentLang; });
-        document.dir = (li && li.dir === 'rtl') ? 'rtl' : 'ltr';
-        await applyTranslations();
-        getLocation();
-        updateAdvisorText();
-    };
-}
-
-// ============================================================
-// 8. APP DEFINITIONS
+// 5. APP DEFINITIONS & SENSOR MAP
 // ============================================================
 var APP_LIST = [
     { id: 'engine', labelKey: 'engine', icon: 'fa-cogs' },
@@ -1259,33 +1189,28 @@ function getSubDevices(appId) {
     return [];
 }
 
-// ============================================================
-// 9. SENSOR MAPS
-// ============================================================
 var SENSOR_MAP = {
     engine: [
-        { id: 'sound', icon: '🎤', labelKey: 'sound_name', type: 'mic', permKey: 'perm_mic', weight: 60, duration: 10, readings: 3 },
-        { id: 'vibration', icon: '📳', labelKey: 'vib_name', type: 'vibration', weight: 20, duration: 10, readings: 3 },
-        { id: 'camera', icon: '📸', labelKey: 'cam_name', type: 'camera', permKey: 'perm_camera', weight: 10, duration: 8, readings: 1 }
+        { id: 'sound', icon: '🎤', labelKey: 'sound_name', instrKey: 'instr_sound', type: 'mic', permKey: 'perm_mic', weight: 60, duration: 10, readings: 3 },
+        { id: 'vibration', icon: '📳', labelKey: 'vib_name', instrKey: 'instr_vibration', type: 'vibration', weight: 20, duration: 10, readings: 3 },
+        { id: 'camera', icon: '📸', labelKey: 'cam_name', instrKey: 'instr_camera', type: 'camera', permKey: 'perm_camera', weight: 10, duration: 8, readings: 1 }
     ],
     home: [
-        { id: 'sound', icon: '🎤', labelKey: 'sound_name', type: 'mic', permKey: 'perm_mic', weight: 50, duration: 10, readings: 3 },
-        { id: 'vibration', icon: '📳', labelKey: 'vib_name', type: 'vibration', weight: 30, duration: 10, readings: 3 },
-        { id: 'temperature', icon: '🌡️', labelKey: 'heat_name', type: 'thermal', weight: 10, duration: 6, readings: 1 }
+        { id: 'sound', icon: '🎤', labelKey: 'sound_name', instrKey: 'instr_sound', type: 'mic', permKey: 'perm_mic', weight: 50, duration: 10, readings: 3 },
+        { id: 'vibration', icon: '📳', labelKey: 'vib_name', instrKey: 'instr_vibration', type: 'vibration', weight: 30, duration: 10, readings: 3 },
+        { id: 'temperature', icon: '🌡️', labelKey: 'heat_name', instrKey: 'instr_temperature', type: 'thermal', weight: 10, duration: 6, readings: 1 }
     ],
     oil: [
-        { id: 'camera', icon: '📸', labelKey: 'cam_name', type: 'camera', permKey: 'perm_camera', weight: 40, duration: 8, readings: 1 },
-        { id: 'magnetic', icon: '🧲', labelKey: 'magnet_name', type: 'magnetic', weight: 30, duration: 6, readings: 1 },
-        { id: 'vibration', icon: '📳', labelKey: 'vib_name', type: 'vibration', weight: 20, duration: 10, readings: 3 }
+        { id: 'camera', icon: '📸', labelKey: 'cam_name', instrKey: 'instr_camera', type: 'camera', permKey: 'perm_camera', weight: 40, duration: 8, readings: 1 },
+        { id: 'magnetic', icon: '🧲', labelKey: 'magnet_name', instrKey: 'instr_magnetic', type: 'magnetic', weight: 30, duration: 6, readings: 1 },
+        { id: 'vibration', icon: '📳', labelKey: 'vib_name', instrKey: 'instr_vibration', type: 'vibration', weight: 20, duration: 10, readings: 3 }
     ]
 };
 
 // ============================================================
-// 10. FINGERPRINTS – 68 (35 Engine + 20 Home + 13 Oil)
+// 6. FINGERPRINTS (68)
 // ============================================================
-// 10.1 ENGINE – 35 (15 de base + 5 ajoutées + 15 nouvelles)
 var ENGINE_FINGERPRINTS = [
-    // === 15 de base ===
     { id:'healthy', nameKey:'fault_healthy', solutionKey:'solution_healthy', severity:'low', freq:[85,170,255,340], pattern:'regular', smoke:'none', vib:'low' },
     { id:'knocking', nameKey:'fault_knocking', solutionKey:'solution_knocking', severity:'high', freq:[60,120,180,240], pattern:'irregular', smoke:'black', vib:'high' },
     { id:'squeal', nameKey:'fault_squeal', solutionKey:'solution_squeal', severity:'medium', freq:[400,600,800,1000], pattern:'regular', smoke:'none', vib:'medium' },
@@ -1301,13 +1226,11 @@ var ENGINE_FINGERPRINTS = [
     { id:'belt_loose', nameKey:'fault_belt_loose', solutionKey:'solution_belt_loose', severity:'medium', freq:[500,750,1000,1250], pattern:'regular', smoke:'none', vib:'low' },
     { id:'valve_tick', nameKey:'fault_valve_tick', solutionKey:'solution_valve_tick', severity:'medium', freq:[220,330,440,550], pattern:'regular', smoke:'none', vib:'medium' },
     { id:'pump_whine', nameKey:'fault_pump_whine', solutionKey:'solution_pump_whine', severity:'medium', freq:[300,450,600,750], pattern:'regular', smoke:'none', vib:'medium' },
-    // === 5 ajoutées précédemment ===
     { id:'crankshaft_sensor', nameKey:'fault_crankshaft', solutionKey:'solution_crankshaft', severity:'high', freq:[150,300,450,600], pattern:'irregular', smoke:'none', vib:'medium' },
     { id:'camshaft_sensor', nameKey:'fault_camshaft', solutionKey:'solution_camshaft', severity:'high', freq:[200,400,600,800], pattern:'irregular', smoke:'none', vib:'medium' },
     { id:'timing_chain', nameKey:'fault_timing', solutionKey:'solution_timing', severity:'high', freq:[100,200,300,400], pattern:'irregular', smoke:'none', vib:'high' },
     { id:'vacuum_leak', nameKey:'fault_vacuum', solutionKey:'solution_vacuum', severity:'medium', freq:[300,600,900,1200], pattern:'continuous', smoke:'none', vib:'low' },
     { id:'radiator_blocked', nameKey:'fault_radiator', solutionKey:'solution_radiator', severity:'medium', freq:[50,100,150,200], pattern:'continuous', smoke:'white', vib:'medium' },
-    // === 15 nouvelles ===
     { id:'spark_plug', nameKey:'fault_spark_plug', solutionKey:'solution_spark_plug', severity:'medium', freq:[130,260,390,520], pattern:'irregular', smoke:'none', vib:'medium' },
     { id:'ignition_coil', nameKey:'fault_ignition_coil', solutionKey:'solution_ignition_coil', severity:'high', freq:[250,500,750,1000], pattern:'irregular', smoke:'none', vib:'medium' },
     { id:'fuel_pump_weak', nameKey:'fault_fuel_pump', solutionKey:'solution_fuel_pump', severity:'medium', freq:[80,160,240,320], pattern:'continuous', smoke:'none', vib:'low' },
@@ -1325,7 +1248,6 @@ var ENGINE_FINGERPRINTS = [
     { id:'connecting_rod', nameKey:'fault_connecting_rod', solutionKey:'solution_connecting_rod', severity:'high', freq:[110,220,330,440], pattern:'regular', smoke:'none', vib:'very_high' }
 ];
 
-// 10.2 HOME – 20 (15 de base + 5 nouvelles)
 var HOME_FINGERPRINTS = [
     { id:'home_healthy', nameKey:'fault_home_healthy', solutionKey:'solution_home_healthy', severity:'low', sound:'smooth', vib:'low', temp:'normal' },
     { id:'home_motor', nameKey:'fault_home_motor', solutionKey:'solution_home_motor', severity:'high', sound:'rough', vib:'high', temp:'high' },
@@ -1342,7 +1264,6 @@ var HOME_FINGERPRINTS = [
     { id:'home_board', nameKey:'fault_home_board', solutionKey:'solution_home_board', severity:'medium', sound:'irregular', vib:'medium', temp:'normal' },
     { id:'home_pump', nameKey:'fault_pump_whine', solutionKey:'solution_pump_whine', severity:'medium', sound:'whine', vib:'medium', temp:'high' },
     { id:'home_valve', nameKey:'fault_valve_tick', solutionKey:'solution_valve_tick', severity:'medium', sound:'ticking', vib:'medium', temp:'moderate' },
-    // 5 nouvelles pour la maison
     { id:'home_water_pump', nameKey:'fault_water_pump', solutionKey:'solution_water_pump', severity:'high', sound:'whine', vib:'medium', temp:'very_high' },
     { id:'home_thermostat_stuck', nameKey:'fault_thermostat', solutionKey:'solution_thermostat', severity:'medium', sound:'smooth', vib:'low', temp:'very_high' },
     { id:'home_head_gasket', nameKey:'fault_head_gasket', solutionKey:'solution_head_gasket', severity:'critical', sound:'hiss', vib:'medium', temp:'very_high' },
@@ -1350,7 +1271,6 @@ var HOME_FINGERPRINTS = [
     { id:'home_rod', nameKey:'fault_rod', solutionKey:'solution_rod', severity:'high', sound:'thud', vib:'very_high', temp:'high' }
 ];
 
-// 10.3 OIL – 13 (10 de base + 3 nouvelles)
 var OIL_FINGERPRINTS = [
     { id:'oil_new', nameKey:'fault_oil_new', solutionKey:'solution_oil_new', severity:'low', color:'golden', magnetic:'low', viscosity:'high' },
     { id:'oil_used', nameKey:'fault_oil_used', solutionKey:'solution_oil_used', severity:'medium', color:'brown', magnetic:'medium', viscosity:'medium' },
@@ -1362,17 +1282,13 @@ var OIL_FINGERPRINTS = [
     { id:'oil_water', nameKey:'fault_oil_water', solutionKey:'solution_oil_water', severity:'critical', color:'milky', magnetic:'low', viscosity:'very_low' },
     { id:'oil_soot', nameKey:'fault_oil_soot', solutionKey:'solution_oil_soot', severity:'medium', color:'black', magnetic:'medium', viscosity:'medium' },
     { id:'oil_good', nameKey:'fault_oil_good', solutionKey:'solution_oil_good', severity:'low', color:'golden', magnetic:'low', viscosity:'high' },
-    // 3 nouvelles pour les huiles
     { id:'oil_viscosity_loss', nameKey:'fault_oil_used', solutionKey:'solution_oil_used', severity:'medium', color:'brown', magnetic:'medium', viscosity:'very_low' },
     { id:'oil_acidic', nameKey:'fault_oil_oxidized', solutionKey:'solution_oil_oxidized', severity:'medium', color:'dark_brown', magnetic:'high', viscosity:'medium' },
     { id:'oil_fuel_mix', nameKey:'fault_oil_diluted', solutionKey:'solution_oil_diluted', severity:'high', color:'milky', magnetic:'medium', viscosity:'very_low' }
 ];
 
 // ============================================================
-// 11. BUILDERS (suite du code)
-// ============================================================
-// ... (la suite du code est identique à la version précédente avec les corrections de traduction)
-// Pour des raisons de longueur, je continue avec les fonctions essentielles
+// 7. BUILDERS (avec traduction des instructions)
 // ============================================================
 function buildAppSelect() {
     var sel = document.getElementById('appSelect');
@@ -1430,7 +1346,7 @@ function buildSubDeviceSelect(appId) {
     if (devices.length > 0) { sel.value = devices[0].id; sel.onchange(); }
 }
 
-function openApp(appId) {
+async function openApp(appId) {
     if (totalCredits() <= 0 && !admin) { showToast(t('no_credits')); return; }
     document.getElementById('labPanel').style.display = 'block';
     document.getElementById('resultPanel').style.display = 'none';
@@ -1466,7 +1382,7 @@ function closeLab() {
     diagnosisResult = null;
 }
 
-function buildSensors(appId) {
+async function buildSensors(appId) {
     var container = document.getElementById('sensorsContainer');
     if (!container) return;
     var sensors = SENSOR_MAP[appId] || [];
@@ -1478,9 +1394,10 @@ function buildSensors(appId) {
         container.innerHTML = '<div class="empty-state"><i class="fas fa-microchip"></i>لا توجد حساسات لهذا التطبيق.</div>';
         return;
     }
-    sensors.forEach(function(s) {
-        var label = t(s.labelKey);
-        var instr = t('waiting');
+    for (var i = 0; i < sensors.length; i++) {
+        var s = sensors[i];
+        var label = await tt(t(s.labelKey), currentLang);
+        var instr = await tt(t(s.instrKey), currentLang);
         var previewHtml = (s.type === 'camera') ?
             '<div id="preview_' + s.id + '" style="width:100%;min-height:80px;display:flex;align-items:center;justify-content:center;background:#000;border-radius:8px;color:#94a3b8;font-size:0.75rem;">⏳ ' + t('waiting') + '</div>' :
             '<div class="sensor-preview" id="preview_' + s.id + '" style="background:#000;border-radius:8px;padding:6px;color:#94a3b8;font-size:0.75rem;">⏳ ' + t('waiting') + '</div>';
@@ -1513,7 +1430,7 @@ function buildSensors(appId) {
             sensorData[s.id + '_readings'] = [];
             sensorData[s.id + '_readingCount'] = 0;
         }
-    });
+    }
     document.getElementById('analyzeBtn').disabled = false;
     updateAdvisorText();
 }
@@ -1549,7 +1466,7 @@ function stopAllCameras() {
 }
 
 // ============================================================
-// 12. MEASURE SENSOR – avec système de 3 lectures
+// 8. MEASUREMENT FUNCTIONS (avec traduction des statuts)
 // ============================================================
 function measureSensor(sensorId) {
     if (measuring[sensorId]) return;
@@ -1587,7 +1504,7 @@ function measureSensor(sensorId) {
     startMeasurement(sensorId);
 }
 
-function startMeasurement(sensorId) {
+async function startMeasurement(sensorId) {
     var sensors = SENSOR_MAP[currentApp] || [];
     var sensor = sensors.find(function(s){ return s.id === sensorId; });
     if (!sensor) return;
@@ -1622,15 +1539,17 @@ function startMeasurement(sensorId) {
             })
             .catch(function() { if (preview) preview.innerHTML = '<span style="color:#ef4444;">' + t('cam_unavailable') + '</span>'; });
     } else if (preview) {
-        preview.innerHTML = '⏳ ' + t('measuring', {s: duration}) + ' (' + (currentReading + 1) + '/' + readings + ')';
+        var measuringText = await tt(t('measuring', {s: duration}), currentLang);
+        preview.innerHTML = '⏳ ' + measuringText + ' (' + (currentReading + 1) + '/' + readings + ')';
     }
     
     var countdown = duration;
-    var timer = setInterval(function() {
+    var timer = setInterval(async function() {
         countdown--;
         if (countdown > 0) {
             if (preview && !preview.querySelector('video')) {
-                preview.innerHTML = '⏳ ' + t('measuring', {s: countdown}) + ' (' + (currentReading + 1) + '/' + readings + ')';
+                var measuringText = await tt(t('measuring', {s: countdown}), currentLang);
+                preview.innerHTML = '⏳ ' + measuringText + ' (' + (currentReading + 1) + '/' + readings + ')';
             }
         } else {
             clearInterval(timer);
@@ -1672,7 +1591,8 @@ function startMeasurement(sensorId) {
                     if (retake) retake.disabled = false;
                     updateAdvisorText();
                 } else {
-                    if (preview) preview.innerHTML = '⏳ Lecture ' + (currentReading + 2) + '/' + readings + '...';
+                    var nextReadingText = await tt(t('measure'), currentLang);
+                    if (preview) preview.innerHTML = '⏳ ' + nextReadingText + ' ' + (currentReading + 2) + '/' + readings + '...';
                     if (btn) btn.disabled = false;
                     setTimeout(function() {
                         if (!sensorResults[sensorId]) {
@@ -1784,7 +1704,7 @@ function averageReadings(pair) {
     return result;
 }
 
-function resetSensor(sensorId) {
+async function resetSensor(sensorId) {
     if (measuring[sensorId]) return;
     sensorResults[sensorId] = false;
     sensorData[sensorId] = null;
@@ -1834,7 +1754,7 @@ function updateAdvisorText() {
 }
 
 // ============================================================
-// 13. FIND BEST FAULT – avec 35 empreintes moteur
+// 9. FIND BEST FAULT
 // ============================================================
 function findBestFault(sensorData, appType) {
     var fingerprints = [];
@@ -1898,7 +1818,7 @@ function findBestFault(sensorData, appType) {
 }
 
 // ============================================================
-// 14. DIAGNOSIS – avec traduction complète
+// 10. DIAGNOSIS FINAL (avec traduction complète)
 // ============================================================
 document.getElementById('analyzeBtn').onclick = async function() {
     if (!consumeCredit()) return;
@@ -2056,7 +1976,7 @@ document.getElementById('analyzeBtn').onclick = async function() {
 };
 
 // ============================================================
-// 15. HISTORY
+// 11. HISTORY, RESET, ACTIONS
 // ============================================================
 function saveToHistory(name, solution, confidence, faultId) {
     var entry = {
@@ -2095,9 +2015,6 @@ function renderHistory() {
     container.innerHTML = html;
 }
 
-// ============================================================
-// 16. RESET ALL SENSORS
-// ============================================================
 function resetAllSensors() {
     if (sensorState && sensorState.sound && sensorState.sound.recorder && sensorState.sound.recorder.state === 'recording') {
         sensorState.sound.recorder.stop();
@@ -2132,9 +2049,6 @@ function resetAllSensors() {
     document.getElementById('resultPanel').style.display = 'none';
 }
 
-// ============================================================
-// 17. ACTIONS (Speak, Copy, Share)
-// ============================================================
 function speakResult() {
     if (!diagnosisResult) return;
     var text = diagnosisResult.name + '. ' + diagnosisResult.sol;
@@ -2160,13 +2074,10 @@ function shareResult() {
     }
 }
 
-// ============================================================
-// 18. BACK
-// ============================================================
 document.getElementById('backBtn').onclick = closeLab;
 
 // ============================================================
-// 19. ADMIN (5 clicks)
+// 12. ADMIN
 // ============================================================
 var adminClicks = 0;
 var adminTimer = null;
@@ -2183,7 +2094,7 @@ document.getElementById('secretAdminIcon').onclick = function() {
 };
 
 // ============================================================
-// 20. SHARE BUTTONS
+// 13. SHARE BUTTONS
 // ============================================================
 document.getElementById('shareWhatsApp').onclick = function() {
     window.open('https://wa.me/?text=' + encodeURIComponent(window.location.href), '_blank');
@@ -2201,14 +2112,14 @@ document.getElementById('shareGeneral').onclick = function() {
 };
 
 // ============================================================
-// 21. PAYMENT BUTTONS
+// 14. PAYMENT BUTTONS
 // ============================================================
 document.getElementById('singlePayBtn').onclick = function(){ buyPlan(1); };
 document.getElementById('pack5PayBtn').onclick = function(){ buyPlan(5); };
 document.getElementById('pack15PayBtn').onclick = function(){ buyPlan(15); };
 
 // ============================================================
-// 22. ACTIVATE LICENSE
+// 15. ACTIVATE LICENSE
 // ============================================================
 document.getElementById('activateLicenseBtn').onclick = function(){
     var code = document.getElementById('licenseCode').value.trim();
@@ -2228,7 +2139,7 @@ document.getElementById('activateLicenseBtn').onclick = function(){
 };
 
 // ============================================================
-// 23. INIT
+// 16. INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', async function() {
     document.dir = (rtlLangs.indexOf(currentLang) !== -1) ? 'rtl' : 'ltr';
@@ -2242,7 +2153,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     console.log('🔬 9 capteurs physiques');
     console.log('🌐 54 langues (3 manuelles + 51 automatiques)');
     console.log('✅ Lecture en 3 passes pour micro et vibration');
-    console.log('✅ Traduction complète des résultats');
+    console.log('✅ Traduction complète des résultats et des capteurs');
     console.log('✅ Liens Gumroad: ctuncj, ksedbc, fmozaw');
 });
 </script>
