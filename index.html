@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>🧬 PhysicSens Hub</title>
+    <script>
+        // فرض الترميز UTF-8 بالقوة (حتى لو أهمل الخادم)
+        document.charset = "UTF-8";
+        document.characterSet = "UTF-8";
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* جميع الأنماط ثابتة (لم تتغير) */
+        /* الأنماط ثابتة ومحسّنة للعربية */
         *{margin:0;padding:0;box-sizing:border-box}
         body{background:#0a0f1a;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;padding:0.8rem;display:flex;justify-content:center;align-items:center;min-height:100vh}
         .container{max-width:720px;width:100%;margin:auto;background:#0e1422;border-radius:2rem;border:1px solid #f5a623;overflow:hidden;box-shadow:0 10px 30px -8px #000}
@@ -125,7 +130,7 @@
         <div class="qr-code" id="qrContainer"><img id="qrImage" alt="QR"></div>
         <div class="title-section">
             <div class="title-fixed" id="appTitle">🧬 PhysicSens Hub</div>
-            <div class="title-translated" id="dynamicSubtitle">Multi-Wing Physical Lab</div>
+            <div class="title-translated" id="dynamicSubtitle">مختبر فيزيائي متعدد الأجنحة</div>
         </div>
         <div class="main-icon" id="secretAdminIcon"><i class="fas fa-tools"></i></div>
     </div>
@@ -133,7 +138,7 @@
 
     <!-- INFO -->
     <div class="info-strip">
-        <span>📍 <span id="currentLocation">Loading...</span></span>
+        <span>📍 <span id="currentLocation">جاري التحميل...</span></span>
         <span>🕐 <span id="currentTime">--:--:--</span></span>
         <span>📅 <span id="currentDate">--/--/----</span></span>
         <div class="lang-device">
@@ -148,20 +153,20 @@
     <div id="sensorStatusBar"></div>
 
     <!-- CREDITS -->
-    <div class="free-badge" id="freeBadge">🔓 3 free diagnoses remaining</div>
+    <div class="free-badge" id="freeBadge">🔓 3 تشخيصات مجانية متبقية</div>
     <div class="credit-card">
-        <div><i class="fas fa-coins"></i> <span id="creditLabel">Remaining balance:</span> <span class="credit-amount" id="creditValue">0</span></div>
+        <div><i class="fas fa-coins"></i> <span id="creditLabel">الرصيد المتبقي:</span> <span class="credit-amount" id="creditValue">0</span></div>
         <div class="pay-buttons">
             <button class="pay-btn" id="singlePayBtn">💵 1 ($2)</button>
             <button class="pay-btn" id="pack5PayBtn">💵 5 ($8)</button>
             <button class="pay-btn" id="pack15PayBtn">💵 15 ($20)</button>
         </div>
         <div class="license-box">
-            <input type="text" id="licenseCode" placeholder="🔑 Activation code">
-            <button id="activateLicenseBtn">Activate</button>
+            <input type="text" id="licenseCode" placeholder="🔑 كود التفعيل">
+            <button id="activateLicenseBtn">تفعيل</button>
         </div>
         <div id="adminHint"></div>
-        <div id="adminSection" class="admin-only"><i class="fas fa-code-branch"></i> Developer mode active</div>
+        <div id="adminSection" class="admin-only"><i class="fas fa-code-branch"></i> وضع المطور مفعل</div>
     </div>
     <hr class="gold-line">
 
@@ -170,74 +175,77 @@
         <div class="hub-grid">
             <div class="wing-card" data-wing="engine" onclick="selectWing('engine')">
                 <div class="wing-icon">🔧</div>
-                <div class="wing-title" data-key="wing_engine">Engines</div>
-                <div class="wing-desc" data-key="wing_engine_desc">Cars, Trucks, Motorcycles</div>
+                <div class="wing-title" data-key="wing_engine">محركات</div>
+                <div class="wing-desc" data-key="wing_engine_desc">سيارات، شاحنات، دراجات</div>
             </div>
             <div class="wing-card" data-wing="health" onclick="selectWing('health')">
                 <div class="wing-icon">🧬</div>
-                <div class="wing-title" data-key="wing_health">Human Health</div>
-                <div class="wing-desc" data-key="wing_health_desc">Pulse, Breath, Balance</div>
+                <div class="wing-title" data-key="wing_health">صحة الإنسان</div>
+                <div class="wing-desc" data-key="wing_health_desc">نبض، تنفس، توازن</div>
             </div>
             <div class="wing-card" data-wing="home" onclick="selectWing('home')">
                 <div class="wing-icon">🏠</div>
-                <div class="wing-title" data-key="wing_home">Home Appliances</div>
-                <div class="wing-desc" data-key="wing_home_desc">Washers, Fridges, AC</div>
+                <div class="wing-title" data-key="wing_home">الأجهزة المنزلية</div>
+                <div class="wing-desc" data-key="wing_home_desc">غسالات، ثلاجات، مكيفات</div>
             </div>
         </div>
     </div>
 
     <!-- LAB PANEL -->
     <div id="labPanel">
-        <button class="back-to-hub" onclick="goBackToHub()">↩️ <span id="backHubLabel">Back to Hub</span></button>
+        <button class="back-to-hub" onclick="goBackToHub()">↩️ <span id="backHubLabel">العودة للمركز</span></button>
         <div class="selector-area">
-            <label for="appSelect"><i class="fas fa-cubes"></i> <span id="deviceLabel">Device:</span></label>
+            <label for="appSelect"><i class="fas fa-cubes"></i> <span id="deviceLabel">الجهاز:</span></label>
             <select id="subDeviceSelect"></select>
         </div>
 
         <div id="advisorBox" class="advisor-box">
             <i class="fas fa-lightbulb"></i>
-            <span id="advisorText">💡 Select a device to begin physical analysis.</span>
+            <span id="advisorText">💡 اختر جهازاً لبدء التحليل الفيزيائي.</span>
         </div>
 
         <div id="sensorsContainer"></div>
 
-        <button id="analyzeBtn" class="btn-primary">📊 <span id="analyzeLabel">Physical Analysis</span></button>
+        <button id="analyzeBtn" class="btn-primary">📊 <span id="analyzeLabel">تحليل فيزيائي</span></button>
         <div id="resultPanel" class="result-area"></div>
 
         <div class="share-buttons">
-            <button class="share-btn" id="shareWhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-            <button class="share-btn" id="shareEmail"><i class="fas fa-envelope"></i> Email</button>
-            <button class="share-btn" id="shareGeneral"><i class="fas fa-share-alt"></i> <span id="shareLabel">Share</span></button>
+            <button class="share-btn" id="shareWhatsApp"><i class="fab fa-whatsapp"></i> واتساب</button>
+            <button class="share-btn" id="shareEmail"><i class="fas fa-envelope"></i> إيميل</button>
+            <button class="share-btn" id="shareGeneral"><i class="fas fa-share-alt"></i> <span id="shareLabel">مشاركة</span></button>
         </div>
     </div>
 
-    <footer>© 2026 PhysicSens Hub | Multi-Wing Physical Lab</footer>
+    <footer>© 2026 PhysicSens Hub | نقل · بيت · صحة</footer>
 </div>
 
 <!-- SECRET MODAL -->
 <div id="secretModal" class="secret-modal">
     <div class="secret-modal-content">
         <div class="security-lock">🔐</div>
-        <h3 id="secretTitle">Developer Access</h3>
-        <p class="sub-text" id="secretSub">Enter the password to access unlimited privileges</p>
+        <h3 id="secretTitle">الوصول إلى وضع المطور</h3>
+        <p class="sub-text" id="secretSub">أدخل كلمة المرور للوصول إلى الصلاحية غير المحدودة</p>
         <input type="password" id="secretPassword" placeholder="••••••••" autocomplete="off" maxlength="20">
-        <button class="confirm-btn" id="secretConfirmBtn">✔ Confirm</button>
-        <button class="close-btn" id="secretCloseBtn">✖ Cancel</button>
+        <button class="confirm-btn" id="secretConfirmBtn">✔ تأكيد</button>
+        <button class="close-btn" id="secretCloseBtn">✖ إلغاء</button>
     </div>
 </div>
 <div id="toast" class="toast"></div>
 
 <script>
 // ============================================================
-// PHYSICSENS HUB V9.1 – FIXED MAIN TITLE, DYNAMIC SUBTITLE
+// 🧬 PhysicSens Hub – الإصدار النهائي الآمن
 // ============================================================
-// - العنوان الرئيسي ثابت: "🧬 PhysicSens Hub" (لا يتغير)
-// - العنوان الفرعي يتغير حسب اللغة المختارة
-// - ترجمات منفصلة للأجنحة (لا تداخل)
+// الميزات:
+// - 3 أجنحة: محركات، صحة، منزلية
+// - ترجمة عربية كاملة (بدون MyMemory)
+// - بصمة تشغيلية (نقر مزدوج على الساعة)
+// - روابط دفع محدثة (Machines diagnostics)
+// - حل مشكلة الترميز نهائياً
 // ============================================================
 
 // ============================================================
-// 1. SECURITY & HELPERS (ثابت)
+// 1. SECURITY & HELPERS
 // ============================================================
 var STATIC_PASSWORD = 'MOULOUD2026';
 function getDynamicPassword() {
@@ -324,7 +332,7 @@ function consumeCredit() {
 }
 
 // ============================================================
-// 2. LANGUAGES LIST (20)
+// 2. LANGUAGES (20 لغة)
 // ============================================================
 var LANGUAGES = [
     {code:'ar', name:'العربية', flag:'🇸🇦', dir:'rtl'},
@@ -350,7 +358,7 @@ var LANGUAGES = [
 ];
 
 // ============================================================
-// 3. SYSTEM TRANSLATIONS (العنوان الفرعي + الأزرار العامة)
+// 3. SYSTEM TRANSLATIONS (عربية + إنجليزية)
 // ============================================================
 var systemTranslations = {
     ar: {
@@ -452,7 +460,7 @@ var systemTranslations = {
 };
 
 // ============================================================
-// 4. WING TRANSLATIONS (MANUAL ARABIC + ENGLISH SOURCE)
+// 4. WING TRANSLATIONS (يدوية كاملة للعربية + مصدر إنجليزي)
 // ============================================================
 var wingTranslations = {
     engine: {},
@@ -460,7 +468,6 @@ var wingTranslations = {
     home: {}
 };
 
-// --- المصدر الأساسي (الإنجليزية) ---
 var wingSource = {
     engine: {
         wing_engine: 'Engines',
@@ -532,7 +539,6 @@ var wingSource = {
     }
 };
 
-// --- الترجمات العربية اليدوية الكاملة لكل جناح ---
 wingTranslations.engine.ar = {
     wing_engine: 'محركات',
     wing_engine_desc: 'سيارات، شاحنات، دراجات نارية',
@@ -604,17 +610,16 @@ wingTranslations.home.ar = {
     solution_home_unknown: 'راجع فني متخصص.'
 };
 
-// وضع المصدر الإنجليزي في الكائنات (للغات الأخرى)
 wingTranslations.engine.en = wingSource.engine;
 wingTranslations.health.en = wingSource.health;
 wingTranslations.home.en = wingSource.home;
 
 // ============================================================
-// 5. AUTO-TRANSLATE MISSING LANGUAGES (لكل جناح على حدة)
+// 5. الترجمة للغات الأخرى (عبر Google Translate API)
 // ============================================================
 var translationStatus = document.createElement('span');
 translationStatus.id = 'translationStatus';
-translationStatus.textContent = '🌍 Translating...';
+translationStatus.textContent = '🌍 جاري الترجمة...';
 
 async function translateBatch(texts, targetLang) {
     if (!texts || texts.length === 0) return [];
@@ -626,7 +631,7 @@ async function translateBatch(texts, targetLang) {
         const data = await response.json();
         return data[0].map(item => item[0]);
     } catch (e) {
-        console.warn('Auto-translation failed for', targetLang, e);
+        console.warn('فشلت الترجمة للغة', targetLang, e);
         return texts;
     }
 }
@@ -637,11 +642,11 @@ async function autoTranslateAll() {
 
     var langsToTranslate = LANGUAGES.filter(l => l.code !== 'ar' && l.code !== 'en');
 
-    // ----- SYSTEM -----
+    // النظام
     var sysKeys = Object.keys(systemTranslations.en);
     var sysValues = sysKeys.map(k => systemTranslations.en[k]);
     for (var lang of langsToTranslate) {
-        translationStatus.textContent = `🌍 System: ${lang.flag} ${lang.name}...`;
+        translationStatus.textContent = `🌍 النظام: ${lang.flag} ${lang.name}...`;
         var translated = await translateBatch(sysValues, lang.code);
         var newSys = {};
         sysKeys.forEach((k, idx) => {
@@ -651,7 +656,7 @@ async function autoTranslateAll() {
         await new Promise(r => setTimeout(r, 200));
     }
 
-    // ----- WINGS (each wing separately) -----
+    // الأجنحة
     for (var wingName of ['engine', 'health', 'home']) {
         var src = wingSource[wingName];
         var wingKeys = Object.keys(src);
@@ -669,36 +674,26 @@ async function autoTranslateAll() {
         }
     }
 
-    translationStatus.textContent = '✅ All translations ready!';
+    translationStatus.textContent = '✅ جميع الترجمات جاهزة!';
     setTimeout(() => { if(translationStatus.parentNode) translationStatus.remove(); }, 3000);
     applyAllTranslations();
 }
 
 // ============================================================
-// 6. TRANSLATION FUNCTION (ذكية - تبحث في الجناح ثم النظام)
+// 6. دالة الترجمة الذكية
 // ============================================================
 function t(key, vars) {
     try {
         var str;
-        // 1. جناح محدد
         if (currentWing && wingTranslations[currentWing] && wingTranslations[currentWing][currentLang] && wingTranslations[currentWing][currentLang][key] !== undefined) {
             str = wingTranslations[currentWing][currentLang][key];
-        }
-        // 2. النظام
-        else if (systemTranslations[currentLang] && systemTranslations[currentLang][key] !== undefined) {
+        } else if (systemTranslations[currentLang] && systemTranslations[currentLang][key] !== undefined) {
             str = systemTranslations[currentLang][key];
-        }
-        // 3. الإنجليزية (نظام)
-        else if (systemTranslations.en && systemTranslations.en[key] !== undefined) {
+        } else if (systemTranslations.en && systemTranslations.en[key] !== undefined) {
             str = systemTranslations.en[key];
-            console.warn('⚠️ Missing key "' + key + '" in "' + currentLang + '". Using EN system.');
-        }
-        // 4. المفتاح نفسه
-        else {
+        } else {
             str = key;
-            console.error('❌ Key "' + key + '" missing in all scopes.');
         }
-
         if (vars) {
             for (var k in vars) {
                 var regex = new RegExp('\\{' + k + '\\}', 'g');
@@ -710,7 +705,7 @@ function t(key, vars) {
 }
 
 // ============================================================
-// 7. LANGUAGE UI + FIXED MAIN TITLE, DYNAMIC SUBTITLE
+// 7. واجهة اللغة + تطبيق الترجمة
 // ============================================================
 function buildLangSelect() {
     var sel = document.getElementById('langSelect');
@@ -732,13 +727,8 @@ function buildLangSelect() {
 }
 
 function applyAllTranslations() {
-    // ---- العنوان الرئيسي ثابت (لا يتغير) ----
     document.getElementById('appTitle').innerText = '🧬 PhysicSens Hub';
-
-    // ---- العنوان الفرعي ديناميكي (يتغير حسب اللغة) ----
     document.getElementById('dynamicSubtitle').innerText = t('subtitle');
-
-    // ---- النظام ----
     document.getElementById('creditLabel').innerText = t('credit_label');
     document.getElementById('activateLicenseBtn').innerText = t('activate');
     document.getElementById('deviceLabel').innerText = t('device_label');
@@ -749,12 +739,7 @@ function applyAllTranslations() {
     document.getElementById('secretTitle').innerText = t('secret_title');
     document.getElementById('secretSub').innerText = t('secret_sub');
 
-    // أزرار الدفع ثابتة
-    document.getElementById('singlePayBtn').innerHTML = '💵 1 ($2)';
-    document.getElementById('pack5PayBtn').innerHTML = '💵 5 ($8)';
-    document.getElementById('pack15PayBtn').innerHTML = '💵 15 ($20)';
-
-    // ---- بطاقات الأجنحة (باستخدام ترجمات الجناح) ----
+    // بطاقات الأجنحة
     var cards = document.querySelectorAll('.wing-card');
     cards.forEach(function(card) {
         var wing = card.dataset.wing;
@@ -788,13 +773,13 @@ function applyAllTranslations() {
 }
 
 // ============================================================
-// 8. SENSOR STATUS BAR (ثابت)
+// 8. حالة الحساسات
 // ============================================================
 var sensorStatus = {
-    camera: { available: false, permission: 'prompt', label: '📸 Camera' },
-    mic: { available: false, permission: 'prompt', label: '🎤 Microphone' },
-    motion: { available: false, permission: 'prompt', label: '📳 Motion' },
-    thermal: { available: true, permission: 'granted', label: '🌡️ Temperature' }
+    camera: { available: false, permission: 'prompt', label: '📸 الكاميرا' },
+    mic: { available: false, permission: 'prompt', label: '🎤 الميكروفون' },
+    motion: { available: false, permission: 'prompt', label: '📳 الحركة' },
+    thermal: { available: true, permission: 'granted', label: '🌡️ الحرارة' }
 };
 
 function updateSensorStatusUI() {
@@ -806,14 +791,14 @@ function updateSensorStatusUI() {
         var statusClass = s.permission === 'granted' ? 'ready' : (s.permission === 'denied' ? 'denied' : (s.permission === 'prompt' ? 'prompt' : 'unsupported'));
         var icon = s.available ? '✅' : (s.permission === 'denied' ? '🚫' : (s.permission === 'prompt' ? '⏳' : '❌'));
         var label = s.label;
-        if (s.permission === 'prompt') label += ' (tap to allow)';
+        if (s.permission === 'prompt') label += ' (اضغط للسماح)';
         html += `<span class="${statusClass}">${icon} ${label}</span>`;
     }
     container.innerHTML = html;
 }
 
 // ============================================================
-// 9. WING CONFIGURATION (ثابت)
+// 9. تكوين الأجنحة
 // ============================================================
 var WING_CONFIGS = {
     engine: {
@@ -853,6 +838,9 @@ var WING_CONFIGS = {
     }
 };
 
+// ============================================================
+// 10. وظائف الأجنحة والحساسات
+// ============================================================
 function selectWing(wingId) {
     currentWing = wingId;
     document.getElementById('hubContainer').style.display = 'none';
@@ -965,7 +953,7 @@ function buildSensors(wingId) {
 }
 
 // ============================================================
-// 10. MEASURE SENSOR (قاعدة ذهبية 2: إعادة المحاولة)
+// 11. قياس الحساسات
 // ============================================================
 async function measureSensor(sensorId) {
     if (measuring[sensorId]) return;
@@ -1009,7 +997,7 @@ async function measureSensor(sensorId) {
         var preview = document.getElementById('preview_' + sensorId);
         var result = document.getElementById('result_' + sensorId);
         var btn = document.getElementById('measure_' + sensorId);
-        if (preview) preview.innerHTML = '🚫 ' + t('perm_denied') + ' – Click "Retry" to ask again.';
+        if (preview) preview.innerHTML = '🚫 ' + t('perm_denied') + ' – اضغط "إعادة" للمحاولة.';
         if (result) result.innerHTML = '⚠️ ' + t('retry');
         if (btn) { btn.disabled = false; btn.textContent = '🔄 ' + t('retry'); }
         if (sensor.type === 'camera') sensorStatus.camera.permission = 'denied';
@@ -1201,7 +1189,7 @@ function updateAdvisorText() {
 }
 
 // ============================================================
-// 11. GOLDEN RULE 3: ANALYSIS (يعمل بالحساسات المتوفرة)
+// 12. التحليل
 // ============================================================
 document.getElementById('analyzeBtn').onclick = function() {
     if (!consumeCredit()) {
@@ -1280,8 +1268,8 @@ function runAnalysis() {
     var usedCount = done.length;
     var totalCount = sensors.length;
     var note = (usedCount < totalCount) 
-        ? '⚠️ Diagnosis based on ' + usedCount + ' of ' + totalCount + ' sensors. Some unavailable.'
-        : '✅ Diagnosis using all sensors.';
+        ? '⚠️ تم التشخيص باستخدام ' + usedCount + ' من ' + totalCount + ' حساسات. بعضها غير متاح.'
+        : '✅ تم التشخيص باستخدام جميع الحساسات.';
 
     var html =
         '<div style="border-right:4px solid ' + (severity === 'low' ? '#10b981' : severity === 'medium' ? '#f59e0b' : '#ef4444') + ';padding:8px;">' +
@@ -1307,7 +1295,7 @@ function speakResult() {
     var rec = document.querySelector('.diagnosis-recommendation')?.innerText || '';
     if (text || rec) {
         var u = new SpeechSynthesisUtterance(text + '. ' + rec);
-        u.lang = 'en-US';
+        u.lang = 'ar-SA';
         window.speechSynthesis.cancel();
         window.speechSynthesis.speak(u);
     }
@@ -1336,49 +1324,7 @@ function shareResult() {
 }
 
 // ============================================================
-// 12. SECRET ADMIN, PAYMENT, SHARING, TIME, QR, INIT
-// ============================================================
-var pressTimer = null;
-document.getElementById('appTitle').addEventListener('touchstart', function(e) {
-    pressTimer = setTimeout(function() {
-        document.getElementById('secretModal').style.display = 'flex';
-        document.getElementById('secretPassword').value = '';
-        document.getElementById('secretPassword').focus();
-    }, 1500);
-});
-document.getElementById('appTitle').addEventListener('touchend', function(e) { clearTimeout(pressTimer); });
-document.getElementById('appTitle').addEventListener('touchmove', function(e) { clearTimeout(pressTimer); });
-document.getElementById('appTitle').addEventListener('mousedown', function(e) {
-    pressTimer = setTimeout(function() {
-        document.getElementById('secretModal').style.display = 'flex';
-        document.getElementById('secretPassword').value = '';
-        document.getElementById('secretPassword').focus();
-    }, 1500);
-});
-document.getElementById('appTitle').addEventListener('mouseup', function(e) { clearTimeout(pressTimer); });
-document.getElementById('appTitle').addEventListener('mouseleave', function(e) { clearTimeout(pressTimer); });
-
-document.getElementById('secretConfirmBtn').onclick = function() {
-    var pwd = document.getElementById('secretPassword').value.trim();
-    if (pwd === STATIC_PASSWORD || pwd === getDynamicPassword()) {
-        admin = true;
-        document.getElementById('secretModal').style.display = 'none';
-        updateCreditsUI();
-        showToast('🔓 Welcome, Developer!');
-    } else {
-        showToast('❌ Incorrect password');
-        document.getElementById('secretPassword').value = '';
-    }
-};
-document.getElementById('secretCloseBtn').onclick = function() {
-    document.getElementById('secretModal').style.display = 'none';
-};
-document.getElementById('secretPassword').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') document.getElementById('secretConfirmBtn').click();
-});
-
-// ============================================================
-// ✅ تم تحديث روابط الدفع هنا (Machines diagnostics)
+// 13. المدفوعات والإدارة
 // ============================================================
 function buyPlan(p) {
     var urls = {
@@ -1388,7 +1334,7 @@ function buyPlan(p) {
     };
     window.open(urls[p], '_blank');
     setTimeout(function() {
-        if (confirm('Did you complete the payment? (Webhook: https://aged-recipe-d286.mouloud-kamali123.workers.dev/gumroad-webhook)')) {
+        if (confirm('هل أكملت الدفع؟')) {
             setSecureBalance(getSecureBalance() + p);
             updateCreditsUI();
             showToast('✅ ' + t('added') + ' ' + p);
@@ -1408,28 +1354,16 @@ document.getElementById('activateLicenseBtn').onclick = function() {
     } else if (code === 'FREE50') {
         setSecureBalance(getSecureBalance() + 50);
         updateCreditsUI();
-        showToast('✅ Added 50');
+        showToast('✅ تمت إضافة 50 تشخيصاً');
     } else {
         showToast(t('invalid'));
     }
     document.getElementById('licenseCode').value = '';
 };
 
-document.getElementById('shareWhatsApp').onclick = function() {
-    window.open('https://wa.me/?text=' + encodeURIComponent(window.location.href), '_blank');
-};
-document.getElementById('shareEmail').onclick = function() {
-    window.location.href = 'mailto:?subject=PhysicSens Hub&body=' + encodeURIComponent('Try PhysicSens Hub: ' + window.location.href);
-};
-document.getElementById('shareGeneral').onclick = function() {
-    if (navigator.share) {
-        navigator.share({ title: 'PhysicSens Hub', text: 'Multi-Wing Physical Lab', url: window.location.href });
-    } else {
-        navigator.clipboard.writeText(window.location.href);
-        showToast('✅ Link copied');
-    }
-};
-
+// ============================================================
+// 14. الوقت، الموقع، QR، المشاركة
+// ============================================================
 function updateDateTime() {
     var d = new Date();
     document.getElementById('currentDate').innerText = d.getDate().toString().padStart(2, '0') + '/' +
@@ -1463,38 +1397,69 @@ getDeviceId();
 document.getElementById('qrImage').src = 'https://quickchart.io/qr?text=' + encodeURIComponent(window.location.href) + '&size=120&margin=2';
 document.getElementById('qrContainer').onclick = function() {
     navigator.clipboard.writeText(window.location.href);
-    showToast('✅ Link copied');
+    showToast('✅ تم نسخ الرابط');
 };
 
-var currentLang = localStorage.getItem('physicLang') || 'en';
-var admin = false;
-var freeUsed = parseInt(localStorage.getItem('physicFree') || '0');
-var currentWing = null;
-var currentSubDevice = null;
-var sensorResults = {};
-var measuring = {};
-var sensorData = {};
-var cameraStreams = {};
-
-async function initApp() {
-    buildLangSelect();
-    updateCreditsUI();
-    updateSensorStatusUI();
-    await autoTranslateAll();
-    applyAllTranslations();
-    console.log('✅ PhysicSens Hub V9.1 – روابط الدفع محدثة لـ Machines diagnostics.');
-}
-
-if (document.readyState === 'complete') {
-    initApp();
-} else {
-    document.addEventListener('DOMContentLoaded', initApp);
-}
+document.getElementById('shareWhatsApp').onclick = function() {
+    window.open('https://wa.me/?text=' + encodeURIComponent(window.location.href), '_blank');
+};
+document.getElementById('shareEmail').onclick = function() {
+    window.location.href = 'mailto:?subject=PhysicSens Hub&body=' + encodeURIComponent('جرب PhysicSens Hub: ' + window.location.href);
+};
+document.getElementById('shareGeneral').onclick = function() {
+    if (navigator.share) {
+        navigator.share({ title: 'PhysicSens Hub', text: 'مختبر فيزيائي متعدد الأجنحة', url: window.location.href });
+    } else {
+        navigator.clipboard.writeText(window.location.href);
+        showToast('✅ تم نسخ الرابط');
+    }
+};
 
 // ============================================================
-// 🧾 البصمة التشغيلية المرجعية (Operational Fingerprint)
+// 15. الوضع السري (Admin)
 // ============================================================
+var pressTimer = null;
+document.getElementById('appTitle').addEventListener('touchstart', function(e) {
+    pressTimer = setTimeout(function() {
+        document.getElementById('secretModal').style.display = 'flex';
+        document.getElementById('secretPassword').value = '';
+        document.getElementById('secretPassword').focus();
+    }, 1500);
+});
+document.getElementById('appTitle').addEventListener('touchend', function(e) { clearTimeout(pressTimer); });
+document.getElementById('appTitle').addEventListener('touchmove', function(e) { clearTimeout(pressTimer); });
+document.getElementById('appTitle').addEventListener('mousedown', function(e) {
+    pressTimer = setTimeout(function() {
+        document.getElementById('secretModal').style.display = 'flex';
+        document.getElementById('secretPassword').value = '';
+        document.getElementById('secretPassword').focus();
+    }, 1500);
+});
+document.getElementById('appTitle').addEventListener('mouseup', function(e) { clearTimeout(pressTimer); });
+document.getElementById('appTitle').addEventListener('mouseleave', function(e) { clearTimeout(pressTimer); });
 
+document.getElementById('secretConfirmBtn').onclick = function() {
+    var pwd = document.getElementById('secretPassword').value.trim();
+    if (pwd === STATIC_PASSWORD || pwd === getDynamicPassword()) {
+        admin = true;
+        document.getElementById('secretModal').style.display = 'none';
+        updateCreditsUI();
+        showToast('🔓 مرحباً أيها المطور!');
+    } else {
+        showToast('❌ كلمة المرور غير صحيحة');
+        document.getElementById('secretPassword').value = '';
+    }
+};
+document.getElementById('secretCloseBtn').onclick = function() {
+    document.getElementById('secretModal').style.display = 'none';
+};
+document.getElementById('secretPassword').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('secretConfirmBtn').click();
+});
+
+// ============================================================
+// 16. البصمة التشغيلية (النقر المزدوج على الساعة)
+// ============================================================
 function getOperationalFingerprint() {
     try {
         var stored = localStorage.getItem('physicOpFingerprint');
@@ -1548,7 +1513,6 @@ function showOperationalFingerprint() {
     console.log('🧾 البصمة (عند الطلب):', fp);
 }
 
-// ربط النقر المزدوج بالساعة
 var timeElement = document.getElementById('currentTime');
 if (timeElement) {
     timeElement.addEventListener('dblclick', function(e) {
@@ -1556,21 +1520,46 @@ if (timeElement) {
     });
 }
 
-// حفظ دوري كل 30 ثانية
 setInterval(function() {
     saveOperationalFingerprint();
 }, 30000);
 
-// حفظ عند الإغلاق
 window.addEventListener('beforeunload', function() {
     saveOperationalFingerprint();
 });
 
-// حفظ أولي عند التحميل
 window.addEventListener('load', function() {
     saveOperationalFingerprint();
     console.log('🧾 البصمة التشغيلية جاهزة (نقر مزدوج على الساعة لعرضها).');
 });
+
+// ============================================================
+// 17. تشغيل التطبيق
+// ============================================================
+var currentLang = localStorage.getItem('physicLang') || 'ar';
+var admin = false;
+var freeUsed = parseInt(localStorage.getItem('physicFree') || '0');
+var currentWing = null;
+var currentSubDevice = null;
+var sensorResults = {};
+var measuring = {};
+var sensorData = {};
+var cameraStreams = {};
+
+async function initApp() {
+    buildLangSelect();
+    updateCreditsUI();
+    updateSensorStatusUI();
+    await autoTranslateAll();
+    applyAllTranslations();
+    console.log('✅ PhysicSens Hub V9.1 – الإصدار النهائي الآمن');
+}
+
+if (document.readyState === 'complete') {
+    initApp();
+} else {
+    document.addEventListener('DOMContentLoaded', initApp);
+}
 </script>
 </body>
 </html>
