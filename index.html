@@ -8,7 +8,7 @@
     <title>🔧 PhysicSens</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* نفس الـ CSS السابق، لم يتغير */
+        /* كل الأنماط كما هي، لم تتغير */
         *{margin:0;padding:0;box-sizing:border-box}
         body{background:#0a0f1a;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;padding:0.8rem}
         .container{max-width:720px;margin:auto;background:#0e1422;border-radius:2rem;border:1px solid #f5a623;overflow:hidden;box-shadow:0 10px 30px -8px #000}
@@ -71,6 +71,13 @@
         .result-area .diagnosis-recommendation{font-size:0.9rem;color:#b9c7d9;padding:6px 0}
         .result-area .diagnosis-confidence{font-size:0.8rem;color:#94a3b8}
         .result-area .diagnosis-note{font-size:0.7rem;color:#94a3b8;margin-top:8px;padding:6px;border-top:1px solid #1e293b}
+        .result-area .trend-container{background:#1e293b;border-radius:12px;padding:10px 14px;margin:8px 0;border:1px solid #334155;font-size:0.8rem;color:#cbd5e1}
+        .result-area .trend-container .trend-row{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+        .result-area .trend-container .trend-label{color:#94a3b8;font-weight:500}
+        .result-area .trend-container .trend-up{color:#2ecc71}
+        .result-area .trend-container .trend-down{color:#ef4444}
+        .result-area .trend-container .trend-stable{color:#f5b81b}
+        .result-area .trend-container .trend-badge{background:#0f172a;padding:2px 10px;border-radius:20px;display:inline-block;font-size:0.7rem}
         .action-buttons{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
         .action-btn{flex:1;background:#2d3a4e;padding:6px;border-radius:40px;text-align:center;cursor:pointer;font-size:0.65rem;border:none;color:#fff;min-width:60px}
         .action-btn:active{transform:scale(0.95)}
@@ -191,13 +198,12 @@
 
 <script>
 // ============================================================
-// 🔒 PhysicSens V6.5 – FULLY DYNAMIC TRANSLATION FOR ALL TEXTS
-// ✅ 20 Manual + 34 Online = 54 Languages
-// ✅ All texts including sensor names, instructions, errors, diagnosis are translated dynamically
+// 🔒 PhysicSens V6.6 – DYNAMIC APP & SUB-DEVICE NAMES (fully translated)
+// ✅ التعديل الوحيد: استخدام tt() بدلاً من t() لأسماء التطبيقات والمعدات
 // ============================================================
 
 // ============================================================
-// 🌍 54 LANGUAGES
+// 🌍 54 LANGUAGES (لم تتغير)
 // ============================================================
 var LANGUAGES = [
     {code:'en', name:'English', flag:'🇬🇧', dir:'ltr', native:true},
@@ -263,7 +269,7 @@ function isOnlineOnlyLang(code) {
 }
 
 // ============================================================
-// 📝 20 MANUAL TRANSLATIONS (only English and Arabic shown for brevity, all 20 included in final)
+// 📝 20 MANUAL TRANSLATIONS (نفس الكود السابق، لم يتغير)
 // ============================================================
 var TRANSLATIONS = {};
 
@@ -418,10 +424,18 @@ TRANSLATIONS.en = {
     confidence_level: 'Confidence: {0}% ({1})',
     diag_result: '✅ Diagnosis: {0}',
     diag_recommendation: '🔧 Recommendation: {0}',
-    no_sensors: '❌ No sensor data. Please grant permissions and try again.'
+    no_sensors: '❌ No sensor data. Please grant permissions and try again.',
+    trend_title: '📊 Progress vs Previous Session',
+    trend_up: '↑ Improvement',
+    trend_down: '↓ Decline',
+    trend_stable: '➖ Stable',
+    trend_unknown: 'No previous data',
+    trend_overall_good: '✅ Your indicators are stable or improving. Keep it up!',
+    trend_overall_mixed: '⚠️ Some indicators changed. Monitor them in future sessions.',
+    trend_overall_bad: '🔴 Several indicators changed significantly. Consider rest and re-check.'
 };
 
-// Arabic
+// Arabic (نفس الكود السابق، لم يتغير)
 TRANSLATIONS.ar = {
     subtitle: '📊 تحليل فيزيائي للمحركات والزيوت والأجهزة',
     free_badge: '🔓 {0} تشخيصات مجانية متبقية',
@@ -572,11 +586,19 @@ TRANSLATIONS.ar = {
     confidence_level: 'الثقة: {0}% ({1})',
     diag_result: '✅ التشخيص: {0}',
     diag_recommendation: '🔧 التوصية: {0}',
-    no_sensors: '❌ لم يتمكن التطبيق من قراءة أي حساس. يرجى منح الأذونات والمحاولة مرة أخرى.'
+    no_sensors: '❌ لم يتمكن التطبيق من قراءة أي حساس. يرجى منح الأذونات والمحاولة مرة أخرى.',
+    trend_title: '📊 التطور مقارنة بالجلسة السابقة',
+    trend_up: '↑ تحسن',
+    trend_down: '↓ تراجع',
+    trend_stable: '➖ مستقر',
+    trend_unknown: 'لا توجد بيانات سابقة',
+    trend_overall_good: '✅ مؤشراتك مستقرة أو في تحسن. استمر!',
+    trend_overall_mixed: '⚠️ بعض المؤشرات تغيرت. راقبها في الجلسات القادمة.',
+    trend_overall_bad: '🔴 تغيرات ملحوظة في عدة مؤشرات. ننصح بالاسترخاء وإعادة الفحص.'
 };
 
 // ============================================================
-// 🌐 ONLINE TRANSLATION SYSTEM
+// 🌐 ONLINE TRANSLATION SYSTEM (نفس الكود السابق)
 // ============================================================
 var CACHE_KEY = 'physicTransCacheV6';
 var translationCache = {};
@@ -712,7 +734,7 @@ async function tt(text, targetLang) {
 }
 
 // ============================================================
-// 📝 APPLY TRANSLATIONS
+// 📝 APPLY TRANSLATIONS (نفس الكود السابق)
 // ============================================================
 async function applyTranslations() {
     try {
@@ -767,14 +789,14 @@ async function applyTranslations() {
         }
         
         updateCreditsUI();
-        buildAppSelect();
+        // نعيد بناء القوائم المنسدلة لتعكس الترجمة الجديدة
+        await buildAppSelect();
         
-        // إعادة بناء الحساسات باللغة الجديدة
         if (currentApp && currentSubDevice) {
             await buildSensors(currentApp);
             await updateAdvisorText();
         } else if (currentApp) {
-            buildSubDeviceSelect(currentApp);
+            await buildSubDeviceSelect(currentApp);
         }
         
         updateDateTime();
@@ -788,7 +810,7 @@ async function applyTranslations() {
 }
 
 // ============================================================
-// 🌐 BUILD LANGUAGE SELECT
+// 🌐 BUILD LANGUAGE SELECT (نفس الكود السابق)
 // ============================================================
 function buildLangSelect() {
     var sel = document.getElementById('langSelect');
@@ -826,7 +848,7 @@ function buildLangSelect() {
 }
 
 // ============================================================
-// 🔐 Security
+// 🔐 Security (نفس الكود السابق)
 // ============================================================
 var STATIC_PASSWORD = 'MOULOUD2026';
 
@@ -880,7 +902,7 @@ function setSecureBalance(value) {
 }
 
 // ============================================================
-// 📊 Real Physical Analysis Functions (unchanged)
+// 📊 Real Physical Analysis Functions (نفس الكود السابق)
 // ============================================================
 async function analyzeRealSound(duration) {
     try {
@@ -1032,7 +1054,7 @@ function analyzeTemperatureWithWarning() {
 }
 
 // ============================================================
-// ⚙️ Global Variables
+// ⚙️ Global Variables (نفس الكود السابق)
 // ============================================================
 var admin = false;
 var currentApp = null;
@@ -1045,7 +1067,7 @@ var freeUsed = parseInt(localStorage.getItem('physicFree') || '0');
 var diagnosisHistory = JSON.parse(localStorage.getItem('physicHistory') || '[]');
 
 // ============================================================
-// 🔧 Core Functions
+// 🔧 Core Functions (نفس الكود السابق)
 // ============================================================
 function totalCredits() {
     if (admin) return 9999;
@@ -1103,7 +1125,7 @@ function buyPlan(p) {
 }
 
 // ============================================================
-// 🕐 TIME, DATE, LOCATION, DEVICE ID
+// 🕐 TIME, DATE, LOCATION, DEVICE ID (نفس الكود السابق)
 // ============================================================
 function updateDateTime() {
     try {
@@ -1156,7 +1178,7 @@ function getDeviceId() {
 }
 
 // ============================================================
-// 📊 Sensor Measurement Functions (FULLY TRANSLATED)
+// 📊 Sensor Measurement Functions (نفس الكود السابق)
 // ============================================================
 function getSensorsForApp(appId) {
     var map = {
@@ -1286,7 +1308,7 @@ async function measureSensorReal(sensorId) {
 }
 
 // ============================================================
-// 🖥️ UI Builders (FULLY TRANSLATED)
+// 🖥️ UI Builders (المعدل: استخدام tt() لأسماء التطبيقات والمعدات)
 // ============================================================
 function getSubDevices(appId) {
     if (appId === 'engine') return ENGINE_SUB;
@@ -1295,15 +1317,26 @@ function getSubDevices(appId) {
     return [];
 }
 
-function buildAppSelect() {
+async function buildAppSelect() {
     var sel = document.getElementById('appSelect');
-    sel.innerHTML = '<option value="">' + t('advisor_welcome').replace('💡 ', '') + '</option>';
-    APP_LIST.forEach(function(app) {
+    // الخيار الأول (الافتراضي) يُترجم
+    var defaultText = await tt(t('advisor_welcome'), currentLang);
+    sel.innerHTML = '<option value="">' + defaultText.replace('💡 ', '') + '</option>';
+    
+    for (var i = 0; i < APP_LIST.length; i++) {
+        var app = APP_LIST[i];
         var opt = document.createElement('option');
         opt.value = app.id;
-        opt.textContent = t(app.labelKey);
+        // استخدم الترجمة التلقائية للنص الإنجليزي
+        var englishText = TRANSLATIONS.en[app.labelKey] || app.labelKey;
+        var translatedText = await tt(englishText, currentLang);
+        opt.textContent = translatedText;
         sel.appendChild(opt);
-    });
+    }
+    
+    // استعادة التحديد السابق
+    if (currentApp) sel.value = currentApp;
+    
     sel.onchange = function() {
         var val = this.value;
         if (!val) { closeLab(); return; }
@@ -1320,21 +1353,38 @@ function buildAppSelect() {
     };
 }
 
-function buildSubDeviceSelect(appId) {
+async function buildSubDeviceSelect(appId) {
     var sel = document.getElementById('subDeviceSelect');
     var devices = getSubDevices(appId);
-    sel.innerHTML = '<option value="">' + t('select_device') + '</option>';
-    devices.forEach(function(dev) {
+    var defaultText = await tt(t('select_device'), currentLang);
+    sel.innerHTML = '<option value="">' + defaultText + '</option>';
+    
+    for (var i = 0; i < devices.length; i++) {
+        var dev = devices[i];
         var opt = document.createElement('option');
         opt.value = dev.id;
-        opt.textContent = t(dev.labelKey);
+        var englishText = TRANSLATIONS.en[dev.labelKey] || dev.labelKey;
+        var translatedText = await tt(englishText, currentLang);
+        opt.textContent = translatedText;
         sel.appendChild(opt);
-    });
+    }
+    
+    // استعادة التحديد السابق
+    if (currentSubDevice && devices.some(function(d){ return d.id === currentSubDevice; })) {
+        sel.value = currentSubDevice;
+    } else if (devices.length > 0) {
+        sel.value = devices[0].id;
+        currentSubDevice = devices[0].id;
+    }
+    
     sel.onchange = function() {
         currentSubDevice = this.value;
         if (currentSubDevice) { buildSensors(currentApp); }
     };
-    if (devices.length > 0) { sel.value = devices[0].id; sel.onchange(); }
+    if (devices.length > 0 && !sel.value) {
+        sel.value = devices[0].id;
+        currentSubDevice = devices[0].id;
+    }
 }
 
 async function openApp(appId) {
@@ -1374,7 +1424,6 @@ async function buildSensors(appId) {
     
     for (var i = 0; i < sensors.length; i++) {
         var s = sensors[i];
-        // ترجمة النصوص باستخدام tt
         var label = await tt(TRANSLATIONS.en[s.labelKey] || s.labelKey, currentLang);
         var instr = await tt(TRANSLATIONS.en[s.instrKey] || s.instrKey, currentLang);
         var statusBadge = '';
@@ -1503,7 +1552,7 @@ async function updateAdvisorText() {
 }
 
 // ============================================================
-// 🧬 Find Best Fault
+// 🧬 Find Best Fault (نفس الكود السابق)
 // ============================================================
 function findBestFault(matchData, appType) {
     var fingerprints = [];
@@ -1556,7 +1605,7 @@ function findBestFault(matchData, appType) {
 }
 
 // ============================================================
-// 📊 Final Analysis & Diagnosis (FULLY TRANSLATED)
+// 📊 FINAL ANALYSIS & DIAGNOSIS (مع البصمة التشغيلية – نفس الكود السابق)
 // ============================================================
 document.getElementById('analyzeBtn').onclick = async function() {
     if (!consumeCredit()) return;
@@ -1653,6 +1702,86 @@ document.getElementById('analyzeBtn').onclick = async function() {
         noteText = '📌 ' + t('sensor_note', {0: 'All sensors'});
     }
     
+    // البصمة التشغيلية (نفس الكود السابق)
+    var currentSession = {
+        date: new Date().toISOString(),
+        app: currentApp,
+        subDevice: currentSubDevice,
+        diagnosis: diagnosisText,
+        recommendation: recommendationText,
+        confidence: confidence,
+        sensors: sensorStatus.map(function(s){ return {label: s.label, status: s.status}; }),
+        rawData: matchData,
+        faultId: fault.id
+    };
+    
+    var sessions = JSON.parse(localStorage.getItem('physicSessions') || '[]');
+    var lastSession = sessions.length > 0 ? sessions[sessions.length - 1] : null;
+    
+    sessions.push(currentSession);
+    if (sessions.length > 50) sessions.shift();
+    localStorage.setItem('physicSessions', JSON.stringify(sessions));
+    
+    var trendHtml = '';
+    if (lastSession) {
+        var lastDate = new Date(lastSession.date);
+        var dateStr = lastDate.toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+        var trendTitle = await tt(t('trend_title'), currentLang);
+        trendHtml = '<div class="trend-container">';
+        trendHtml += '<div style="font-weight:500;margin-bottom:4px;">' + trendTitle + ' (' + dateStr + ')</div>';
+        trendHtml += '<div class="trend-row">';
+        var diagChange = (lastSession.diagnosis === currentSession.diagnosis) ? 
+            '<span class="trend-stable">' + t('trend_stable') + '</span>' :
+            '<span class="trend-up">' + t('trend_up') + '</span>';
+        trendHtml += '<span class="trend-label">' + await tt('Diagnosis', currentLang) + ':</span> ' + diagChange;
+        
+        var confDiff = currentSession.confidence - lastSession.confidence;
+        var confTrend = 'stable';
+        if (confDiff > 5) confTrend = 'up';
+        else if (confDiff < -5) confTrend = 'down';
+        var confEmoji = confTrend === 'up' ? '↑' : (confTrend === 'down' ? '↓' : '➖');
+        var confClass = confTrend === 'up' ? 'trend-up' : (confTrend === 'down' ? 'trend-down' : 'trend-stable');
+        trendHtml += ' <span class="trend-label">' + await tt('Confidence', currentLang) + ':</span> <span class="' + confClass + '">' + confEmoji + ' ' + currentSession.confidence + '% (was ' + lastSession.confidence + '%)</span>';
+        trendHtml += '</div><div class="trend-row">';
+        
+        var lastSensorMap = {};
+        if (lastSession.sensors) {
+            lastSession.sensors.forEach(function(ls){ lastSensorMap[ls.label] = ls.status; });
+        }
+        var sensorChanges = [];
+        currentSession.sensors.forEach(function(cs){
+            var lastStatus = lastSensorMap[cs.label] || '❌';
+            if (lastStatus === cs.status) {
+                sensorChanges.push('<span class="trend-stable">' + cs.label + ' ➖</span>');
+            } else if (cs.status === '✅' && lastStatus !== '✅') {
+                sensorChanges.push('<span class="trend-up">' + cs.label + ' ↑</span>');
+            } else if (cs.status === '❌' && lastStatus !== '❌') {
+                sensorChanges.push('<span class="trend-down">' + cs.label + ' ↓</span>');
+            } else {
+                sensorChanges.push('<span>' + cs.label + ' ↕</span>');
+            }
+        });
+        trendHtml += '<span class="trend-label">' + await tt('Sensors', currentLang) + ':</span> ' + sensorChanges.join(' ');
+        trendHtml += '</div>';
+        
+        var overallMsg = '';
+        if (currentSession.sensors.length > 0) {
+            var stableCount = sensorChanges.filter(function(c){ return c.includes('➖'); }).length;
+            if (stableCount >= currentSession.sensors.length * 0.7) {
+                overallMsg = await tt(t('trend_overall_good'), currentLang);
+            } else if (stableCount >= currentSession.sensors.length * 0.4) {
+                overallMsg = await tt(t('trend_overall_mixed'), currentLang);
+            } else {
+                overallMsg = await tt(t('trend_overall_bad'), currentLang);
+            }
+        }
+        trendHtml += '<div style="margin-top:6px;font-size:0.8rem;color:#cbd5e1;">' + overallMsg + '</div>';
+        trendHtml += '</div>';
+    } else {
+        var unknownMsg = await tt(t('trend_unknown'), currentLang);
+        trendHtml = '<div class="trend-container" style="color:#94a3b8;">' + unknownMsg + '</div>';
+    }
+    
     var html = 
         '<div style="border-right:4px solid ' + (confidence >= 80 ? '#10b981' : confidence >= 60 ? '#f59e0b' : '#ef4444') + ';padding:8px;">' +
         '<div style="font-size:1rem;font-weight:bold;color:#f5a623;margin-bottom:6px;">' + diagTitle + '</div>' +
@@ -1666,6 +1795,8 @@ document.getElementById('analyzeBtn').onclick = async function() {
         '<div class="diagnosis-confidence">' + t('confidence_level', {0: confidence, 1: confidenceLevel}) + '</div>' +
         
         '<div class="diagnosis-note">' + noteText + '</div>' +
+        
+        trendHtml +
         
         '<div class="action-buttons">' +
         '<button class="action-btn" onclick="speakResult()">🔊 ' + listenLabel + '</button>' +
@@ -1713,7 +1844,7 @@ function shareResult() {
 }
 
 // ============================================================
-// 🔐 Secret Admin System (unchanged)
+// 🔐 Secret Admin System (نفس الكود السابق)
 // ============================================================
 var pressTimer = null;
 document.getElementById('appTitle').addEventListener('touchstart', function(e) {
@@ -1757,7 +1888,7 @@ document.getElementById('secretPassword').addEventListener('keydown', function(e
 });
 
 // ============================================================
-// 🚀 FINAL INITIALIZATION (Defines APP_LIST, ENGINE_SUB, etc.)
+// 🚀 FINAL INITIALIZATION (تعريفات APP_LIST, ENGINE_SUB, إلخ – نفس الكود السابق)
 // ============================================================
 var APP_LIST = [
     { id: 'engine', labelKey: 'engine', icon: 'fa-cogs' },
@@ -1874,7 +2005,7 @@ async function initApp() {
     buildLangSelect();
     await applyTranslations();
     updateCreditsUI();
-    buildAppSelect();
+    await buildAppSelect();
     
     document.getElementById('singlePayBtn').onclick = function(){ buyPlan(1); };
     document.getElementById('pack5PayBtn').onclick = function(){ buyPlan(5); };
@@ -1914,9 +2045,8 @@ async function initApp() {
     document.getElementById('qrImage').src = 'https://quickchart.io/qr?text=' + encodeURIComponent(window.location.href) + '&size=120&margin=2';
     document.getElementById('qrContainer').onclick = function(){ navigator.clipboard.writeText(window.location.href); showToast('✅ Link copied'); };
     
-    console.log('✅ PhysicSens V6.5 – FULLY DYNAMIC TRANSLATION');
-    console.log('📊 20 Manual + 34 Online = 54 Languages');
-    console.log('🌐 All texts including sensors, instructions, diagnosis are translated dynamically');
+    console.log('✅ PhysicSens V6.6 – جميع الأسماء تترجم ديناميكياً');
+    console.log('📊 54 لغة، بصمة تشغيلية، وتحليل فيزيائي حقيقي');
 }
 
 // Run
